@@ -1,0 +1,114 @@
+﻿<Window x:Class="projekt_jp_kkmr_v1._0.MenuButton1_Window"
+        xmlns:oxy="http://oxyplot.codeplex.com"    
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:projekt_jp_kkmr_v1._0"
+        mc:Ignorable="d"
+        
+        Title="Pomiar RLC" 
+        Height="442" 
+        Width="751"
+        BorderBrush="AliceBlue"
+        FontStyle="Normal"
+        FontFamily="Helvetica Neue"
+        FontSize="13"
+        ResizeMode="NoResize">
+
+    <!--LISTA TODO (1 napisac kom. potem control + k potem control + h) -->
+
+    <!--Ustawienie tła 
+    <Window.Background>
+        <ImageBrush ImageSource="images/MainWindowBackground.jpg"/>
+    </Window.Background>-->
+
+    <!--Ustawianie styli-->
+    <Window.Resources>
+
+        <!--Styl przycisku do wyboru ćwiczenia-->
+        <Style TargetType="Button" x:Key="MainListButton">
+            <Setter Property="Height" Value="36" />
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5,0,8" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        </Style>
+
+
+        <!--Styl przycisków do obsługi programu-->
+        <Style TargetType="Button" x:Key="ControllerButtons">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="170" />
+            <Setter Property="Margin" Value="0,5,0,5" />
+
+        </Style>
+
+        <!--Styl czcionki tytułu-->
+        <Style TargetType="TextBlock" x:Key="TitleFont">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="FontFamily" Value="Helvetica Neue" />
+            <Setter Property="Foreground" Value="White" />
+
+        </Style>
+
+    </Window.Resources>
+
+
+    <Grid RenderTransformOrigin="0.419,0.581">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="196*"/>
+            <ColumnDefinition Width="565*"/>
+        </Grid.ColumnDefinitions>
+
+        <oxy:Plot x:Name="Plot1"   Model="{Binding PlotModel}" Margin="0.487,115,196.513,0" Grid.ColumnSpan="2" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+            <oxy:Plot.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360.031"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </oxy:Plot.RenderTransform>
+            <!-- Osie wykresy zanim wywołasz funkcjie. Muszą być takie same jak te w klasie oxyplotmodel-->
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="100"  />
+                <oxy:LinearAxis Position="Left" Minimum="-100" Maximum="100" />
+            </oxy:Plot.Axes>
+        </oxy:Plot>
+
+        <TextBlock x:Name="Prad_staly" Margin="339,115,167,274" Text="IR = " Grid.Column="2"/>
+        <TextBlock x:Name="Prad" Margin="369,115,105,274" Grid.Column="2" ></TextBlock>
+        <TextBlock x:Name="Prad_jedn" Margin="431,115,25,274" Text="[mA] " Grid.Column="2"/>
+
+        <TextBlock x:Name="Ur_staly" Margin="339,139,167,250" Text="UR = " Grid.Column="2" RenderTransformOrigin="0.64,1.333"/>
+        <TextBlock x:Name="Ur" Margin="369,139,105,250" Grid.Column="2" ></TextBlock>
+        <TextBlock x:Name="Ur_jedn" Margin="431,139,25,250" Text="[V] " Grid.Column="2"/>
+
+        <!-- Blok 1 NAPIĘCIE-->
+        <TextBlock x:Name="Napiecie" Margin="10,10,129,379" Text="Napięcie [V]" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="Napiecie_Sterowanie" Margin="99.487,10,48.513,379" Grid.Column="1"></TextBox>
+        <Slider x:Name="Suwak_Napiecie" Minimum="0" Maximum="230"  Margin="143.487,10,442.513,379" ValueChanged="Suwak_ValueChanged_1" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+
+        <!-- Blok 3 REZYSTANCJA-->
+        <TextBlock x:Name="Rezystancja"  Text="Rezystancja [Ohm]" Margin="9,42,87.513,347" Grid.ColumnSpan="2"></TextBlock>
+        <TextBox x:Name="Rezystancja_Sterowanie" Margin="99.487,45,48.513,344" Grid.Column="1"></TextBox>
+        <Slider x:Name="Rez_Suwak" Minimum="0" Maximum="10000" Margin="143.487,45,442.513,344" ValueChanged="Suwak_ValueChanged_3" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+        <!-- Blok 4 CZĘSTOTLIWOŚĆ-->
+        <TextBlock x:Name="Frq"  Text="Częstotliwość [Hz]" Margin="10,80,99.513,309" Grid.ColumnSpan="2"></TextBlock>
+        <TextBox x:Name="Frq_Sterowanie" Margin="99.487,80,48.513,309" Grid.Column="1"></TextBox>
+        <Slider x:Name="Frq_Suwak" Minimum="0" Maximum="60" Margin="143.487,80,442.513,309" ValueChanged="Suwak_ValueChanged_4" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+    </Grid>
+
+</Window>

@@ -64,6 +64,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="class\Dane_Rzeczywisty.cs" />
+    <Compile Include="class\OxyPlotModel_Cewka.cs" />
+    <Compile Include="class\OxyPlotModel_Kondensator.cs" />
+    <Compile Include="class\Dane.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="WzorOkna.xaml.cs">
+      <DependentUpon>WzorOkna.xaml</DependentUpon>
+    </Compile>
     <Page Include="HelperWindow1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,12 +95,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WzorOkna.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuButton1_Window.xaml.cs">
       <DependentUpon>MenuButton1_Window.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OxyPlotModel.cs" />
+    <Compile Include="class\OxyPlotModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -119,7 +131,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\MainWindowBackground.jpg" />
+    <Resource Include="images\MainMenuBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\License free.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\SecodaryWindowBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\CapacitorVector.png" />
+    <Resource Include="images\CoilVector.png" />
+    <Resource Include="images\Lab1Cewka.png" />
+    <Resource Include="images\Lab1Kondensator.png" />
+    <Resource Include="images\Lab1Rezystor.png" />
+    <Resource Include="images\ResistorVector.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

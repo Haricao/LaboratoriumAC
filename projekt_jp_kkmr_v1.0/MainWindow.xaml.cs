@@ -15,28 +15,83 @@ using System.Windows.Shapes;
 
 namespace projekt_jp_kkmr_v1._0
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    //Klasa glowna MainWindow.xaml
     public partial class MainWindow : Window
     {
+        // Glowne wywolanie okna
         public MainWindow()
         {
             InitializeComponent();
         }
 
 
+        //zmienne
+        private bool HelperButton1_ClickBoolean;
+        private bool HelperButton2_ClickBoolean;
+        private bool HelperButton3_ClickBoolean;
+        private bool HelperButton4_ClickBoolean;
+
+
+        //Funckje
+        public void HelperButton1_ClickBooleanClicked()
+        {
+            HelperButton1_ClickBoolean = !HelperButton1_ClickBoolean;
+        }
+
+        public void HelperButton2_ClickBooleanClicked()
+        {
+            HelperButton2_ClickBoolean = !HelperButton2_ClickBoolean;
+        }
+
+        public void HelperButton3_ClickBooleanClicked()
+        {
+            HelperButton3_ClickBoolean = !HelperButton3_ClickBoolean;
+        }
+
+        public void HelperButton4_ClickBooleanClicked()
+        {
+            HelperButton4_ClickBoolean = !HelperButton4_ClickBoolean;
+        }
+
         //Przyciski MenuButton
         //
         private void MenuButton1_Click(object sender, RoutedEventArgs e)
         {
+            //Wybór wykresu
+            Properties.Settings.Default.Napiecie = 0;
+            Properties.Settings.Default.Indukcyjnosc_L = 0;
+            Properties.Settings.Default.Rezystancja = 0;
+            Properties.Settings.Default.Frq = 0;
+            Properties.Settings.Default.Pojemnosc = 0;
+            Properties.Settings.Default.Indukcyjnosc_C = 0;
+            Properties.Settings.Default.Napiecie_C = 0;
+            Properties.Settings.Default.Napiecie_L = 0;
+            Properties.Settings.Default.Frq_C = 0;
+            Properties.Settings.Default.Pojemnosc_L = 0;
+            Properties.Settings.Default.Frq_L = 0;
+            Properties.Settings.Default.Indukcyjnosc = 0;
+            Properties.Settings.Default.Wybor = 0;
             MenuButton1_Window button1_Window = new MenuButton1_Window();
             button1_Window.Show();
         }
 
         private void MenuButton2_Click(object sender, RoutedEventArgs e)
         {
-
+            Properties.Settings.Default.Napiecie = 0;
+            Properties.Settings.Default.Indukcyjnosc_L = 0;
+            Properties.Settings.Default.Rezystancja = 0;
+            Properties.Settings.Default.Frq = 0;
+            Properties.Settings.Default.Pojemnosc = 0;
+            Properties.Settings.Default.Indukcyjnosc_C = 0;
+            Properties.Settings.Default.Napiecie_C = 0;
+            Properties.Settings.Default.Napiecie_L = 0;
+            Properties.Settings.Default.Frq_C = 0;
+            Properties.Settings.Default.Pojemnosc_L = 0;
+            Properties.Settings.Default.Frq_L = 0;
+            Properties.Settings.Default.Indukcyjnosc = 0;
+            Properties.Settings.Default.Wybor = 0;
+            HelperWindow1 button2_Window = new HelperWindow1();
+            button2_Window.Show();
         }
 
         private void MenuButton3_Click(object sender, RoutedEventArgs e)
@@ -80,20 +135,83 @@ namespace projekt_jp_kkmr_v1._0
         }
 
 
+
         //Przyciski MenuHelper
-        //
-        private void HelperButton1_Click(object sender, RoutedEventArgs e)
+
+        public void HelperButton1_Click(object sender, RoutedEventArgs e)
         {
+            HelperButton1_ClickBooleanClicked();
+
+            if (HelperButton1_ClickBoolean == true)
+            {
+                LabGrid.Visibility = Visibility.Visible;
+                ProgInfo.Visibility = Visibility.Hidden;
+                AuthorInfo.Visibility = Visibility.Hidden;
+                HelperButton2_ClickBoolean = false;
+                HelperButton3_ClickBoolean = false;
+            }
+            else
+            {
+                LabGrid.Visibility = Visibility.Hidden;
+                HelperButton2_ClickBoolean = false;
+                HelperButton3_ClickBoolean = false;
+            }
 
         }
 
         private void HelperButton2_Click(object sender, RoutedEventArgs e)
         {
+            HelperButton2_ClickBooleanClicked();
+
+            if (HelperButton2_ClickBoolean == true)
+            {
+                ProgInfo.Visibility = Visibility.Visible;
+                LabGrid.Visibility = Visibility.Hidden;
+                AuthorInfo.Visibility = Visibility.Hidden;
+                HelperButton1_ClickBoolean = false;
+                HelperButton3_ClickBoolean = false;
+            }
+            else
+            {
+                ProgInfo.Visibility = Visibility.Hidden;
+                HelperButton1_ClickBoolean = false;
+                HelperButton3_ClickBoolean = false;
+            }
 
         }
 
         private void HelperButton3_Click(object sender, RoutedEventArgs e)
         {
+            HelperButton3_ClickBooleanClicked();
+
+            if (HelperButton3_ClickBoolean == true)
+            {
+                AuthorInfo.Visibility = Visibility.Visible;
+                LabGrid.Visibility = Visibility.Hidden;
+                ProgInfo.Visibility = Visibility.Hidden;
+                HelperButton1_ClickBoolean = false;
+                HelperButton2_ClickBoolean = false;
+            }
+            else
+            {
+                AuthorInfo.Visibility = Visibility.Hidden;
+                HelperButton1_ClickBoolean = false;
+                HelperButton2_ClickBoolean = false;
+            }
+
+
+        }
+
+        private void HelperButton4_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
     }

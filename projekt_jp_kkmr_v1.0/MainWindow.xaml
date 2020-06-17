@@ -13,21 +13,21 @@
         FontStyle="Normal"
         FontFamily="Helvetica Neue"
         FontSize="13"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
 
     <!--LISTA TODO (1 napisac kom. potem control + k potem control + h) -->
     <!--TODO: Dodac ikone-->
-    <!--Ustawić graficznie przyciski-->
-    
+
     <!--Ustawienie tła-->
     <Window.Background>
-        <ImageBrush ImageSource="images/MainWindowBackground.jpg"/>
+        <ImageBrush ImageSource="images/MainMenuBackground.jpg"/>
     </Window.Background>
 
     <!--Ustawianie styli-->
     <Window.Resources>
 
-        <!--Styl przycisku do wyboru ćwiczenia-->
+        <!--Styl przycisku do wyboru ćwiczenia  MAIN LIST BUTTON-->
         <Style TargetType="Button" x:Key="MainListButton">
             <Setter Property="Height" Value="36" />
             <Setter Property="Width" Value="180"/>
@@ -37,15 +37,25 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
 
         </Style>
 
 
-        <!--Styl przycisków do obsługi programu-->
+        <!--Styl przycisków do obsługi programu  CONTROLLER BUTTONS-->
         <Style TargetType="Button" x:Key="ControllerButtons">
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="170" />
-            <Setter Property="Margin" Value="0,5,0,5" />
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="280" />
+            <Setter Property="Margin" Value="0,0,0,12" />
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
 
         </Style>
 
@@ -53,21 +63,22 @@
         <Style TargetType="TextBlock" x:Key="TitleFont">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontFamily" Value="Helvetica Neue" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="Black" />
 
         </Style>
 
+
     </Window.Resources>
 
-    
+
     <!--Ustawienia siatki-->
     <Grid Margin="4,-2,4,6">
 
         <!--Ustawienia kolumn-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="420"/>
@@ -80,7 +91,7 @@
 
         <!--Ustawienia wierszy-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="20"/>
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
             <RowDefinition Height="140" />
@@ -89,62 +100,178 @@
 
         </Grid.RowDefinitions>
 
-        <!--Ustawienia przyciskow-->
+        <!--Ozdobne prostokąty do Helper Menu-->
+        <Rectangle Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Fill="#676767" Grid.ColumnSpan="2" Margin="13,30,65,-14" />
+        <Rectangle Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Fill="#DCDCDC" Grid.ColumnSpan="2" Margin="26,0,55,0" />
 
-        <StackPanel Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Margin="60,30,0,0">
-            <Border BorderThickness="5" BorderBrush="#0084A4" CornerRadius="5" Height="295" Width="405">
-                <StackPanel Height="250" Margin="10,40,0,6"  Orientation="Horizontal" VerticalAlignment="Top">
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                        <Button x:Name="MenuButton1"  Click="MenuButton1_Click" Style="{StaticResource MainListButton}" Content="1.Elementy RLC" />
-                        <Button x:Name="MenuButton2"  Click="MenuButton2_Click" Style="{StaticResource MainListButton}" Content="2. Rzeczywiste elementy RLC" />
-                        <Button x:Name="MenuButton3"  Click="MenuButton3_Click" Style="{StaticResource MainListButton}" Content="3. Układy zawierające elementy R,L i C"  />
-                        <Button x:Name="MenuButton4"  Click="MenuButton4_Click" Style="{StaticResource MainListButton}" Content="4. Układ szeregowy RLC"  />
-                        <Button x:Name="MenuButton5"  Click="MenuButton5_Click" Style="{StaticResource MainListButton}" Content="5. Równoległy układ RLC" />
-                    </StackPanel>
 
-                    <StackPanel Margin="15,0,0,0">
-                        <Button x:Name="MenuButton6"  Click="MenuButton6_Click" Style="{StaticResource MainListButton}" Content="Tester 6" />
-                        <Button x:Name="MenuButton7"  Click="MenuButton7_Click" Style="{StaticResource MainListButton}" Content="Tester 7" />
-                        <Button x:Name="MenuButton8"  Click="MenuButton8_Click" Style="{StaticResource MainListButton}" Content="Tester 8" />
-                        <Button x:Name="MenuButton9"  Click="MenuButton9_Click" Style="{StaticResource MainListButton}" Content="Tester 9" />
-                        <Button x:Name="MenuButton10" Click="MenuButton10_Click" Style="{StaticResource MainListButton}" Content="Tester 10" />
-                    </StackPanel>
+        <!--Przyciski od sterowania programem-->
+        <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+            <Border Background="Transparent">
+                <StackPanel Margin="20,0,0,0">
+                    <Button x:Name="HelperButton1" Style="{StaticResource ControllerButtons}" Click="HelperButton1_Click" Content="     Wybór ćwiczenia" HorizontalContentAlignment="Left">
+                        <Button.BitmapEffect>
+                            <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="10" Opacity="0.5" />
+                        </Button.BitmapEffect>
+
+                    </Button>
+
+
+                    <Button x:Name="HelperButton2" Style="{StaticResource ControllerButtons}" Click="HelperButton2_Click" Content="     O programie" HorizontalContentAlignment="Left">
+                        <Button.BitmapEffect>
+                            <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="10" Opacity="0.5" />
+                        </Button.BitmapEffect>
+
+                    </Button>
+
+                    <Button x:Name="HelperButton3" Style="{StaticResource ControllerButtons}" Click="HelperButton3_Click" Content="     O autorach" HorizontalContentAlignment="Left">
+                        <Button.BitmapEffect>
+                            <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="10" Opacity="0.5" />
+                        </Button.BitmapEffect>
+
+                    </Button>
+
+                    <Button x:Name="HelperButton4" Style="{StaticResource ControllerButtons}" Click="HelperButton4_Click" Content="     Wyjście" HorizontalContentAlignment="Left">
+                        <Button.BitmapEffect>
+                            <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="10" Opacity="0.5" />
+                        </Button.BitmapEffect>
+
+                    </Button>
 
                 </StackPanel>
             </Border>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Vertical">
-            <Border BorderThickness="5" BorderBrush="#0084A4" CornerRadius="5" Height="133">
-                <StackPanel Margin="0,2,0,-7">
-                    <Button x:Name="HelperButton1" Style="{StaticResource ControllerButtons}" Click="HelperButton1_Click">Informacje o programie</Button>
-                    <Button x:Name="HelperButton2" Style="{StaticResource ControllerButtons}" Click="HelperButton2_Click">O autorach</Button>
-                    <Button x:Name="HelperButton3" Style="{StaticResource ControllerButtons}" Click="HelperButton3_Click">Wyjście</Button>
 
-                </StackPanel>
-
-            </Border>
-
-        </StackPanel>
-
-        <Border Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" 
-                BorderThickness="6" BorderBrush="#0084A4" 
-                CornerRadius="5">
-            <Rectangle Fill="#0084A4"/>
+        <!--Outline tytulu programu-->
+        <Border Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" BorderThickness="6" BorderBrush="White" CornerRadius="5" Margin="-40,15,0,24">
+            <Rectangle Fill="White"/>
 
         </Border>
 
         <!--Tytuł programu-->
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
-                   Style="{StaticResource TitleFont}" FontSize="34" 
-                   Foreground="White"
-                   Text="Laboratorium obwodów RLC" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="3" 
+                   Style="{StaticResource TitleFont}" FontSize="33" 
+                   Text="Laboratorium obwodów RLC"
+                   FontWeight="DemiBold"
+                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                   Margin="6,24,0,36" Grid.RowSpan="2" Grid.Column="1" />
 
-        <TextBlock Grid.Row="3" Grid.Column="3" 
-                   Style="{StaticResource TitleFont}" Text="Ćwiczenia do wykonania:" 
-                   VerticalAlignment="Top" HorizontalAlignment="Center"
-                   FontSize="20"/>
 
+        <!--Grid przyciskow Wybor cwiczenia-->
+        <Grid x:Name="LabGrid" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" Visibility="Hidden">
+            <Rectangle Fill="#676767" Margin="30,30,-5,0"/>
+            <Rectangle Fill="#DCDCDC" Margin="11,11,11,17"/>
+            <StackPanel Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Visibility="Visible" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Height="250" Orientation="Horizontal" VerticalAlignment="Top">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                        <Button x:Name="MenuButton1"  Click="MenuButton1_Click" Style="{StaticResource MainListButton}" Content="1.Elementy RLC">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+                        </Button>
+
+                        <Button x:Name="MenuButton2"  Click="MenuButton2_Click" Style="{StaticResource MainListButton}" Content="2. Rzeczywiste elementy RLC">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+                        </Button>
+
+                        <Button x:Name="MenuButton3"  Click="MenuButton3_Click" Style="{StaticResource MainListButton}" Content="3. Układy zawierające elementy R,L i C">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+                        </Button>
+
+                        <Button x:Name="MenuButton4"  Click="MenuButton4_Click" Style="{StaticResource MainListButton}" Content="4. Układ szeregowy RLC">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+                        </Button>
+
+                        <Button x:Name="MenuButton5"  Click="MenuButton5_Click" Style="{StaticResource MainListButton}" Content="5. Równoległy układ RLC">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+                        </Button>
+
+                    </StackPanel>
+
+                    <StackPanel Margin="15,0,0,0">
+                        <Button x:Name="MenuButton6"  Click="MenuButton6_Click" Style="{StaticResource MainListButton}" Content="Tester 6">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+
+                        </Button>
+                        <Button x:Name="MenuButton7"  Click="MenuButton7_Click" Style="{StaticResource MainListButton}" Content="Tester 7">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+
+                        </Button>
+                        <Button x:Name="MenuButton8"  Click="MenuButton8_Click" Style="{StaticResource MainListButton}" Content="Tester 8">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+
+                        </Button>
+                        <Button x:Name="MenuButton9"  Click="MenuButton9_Click" Style="{StaticResource MainListButton}" Content="Tester 9">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+
+                        </Button>
+                        <Button x:Name="MenuButton10" Click="MenuButton10_Click" Style="{StaticResource MainListButton}" Content="Tester 10">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="5" Opacity="0.3" />
+                            </Button.BitmapEffect>
+                        </Button>
+                    </StackPanel>
+
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <!--Grid przycisku O programie-->
+        <Grid x:Name="ProgInfo" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" Visibility="Hidden">
+            <Rectangle VerticalAlignment="Top" Fill="#676767" Height="200" Margin="30,30,-5,0"/>
+            <Rectangle VerticalAlignment="Top" Fill="#DCDCDC" Height="200" Margin="11,11,11,17"/>
+            <Rectangle VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="White" Height="180" Margin="30,30,30,80"/>
+
+            <TextBlock VerticalAlignment="Top" TextWrapping="Wrap" Margin="47,42,39,0" Height="144">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </TextBlock>
+
+
+
+        </Grid>
+
+
+        <!--Grid przycisku O autorach-->
+        <Grid x:Name="AuthorInfo" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" Visibility="Hidden">
+            <Rectangle VerticalAlignment="Top" Fill="#676767" Height="200" Margin="30,30,-5,0"/>
+            <Rectangle VerticalAlignment="Top" Fill="#DCDCDC" Height="200" Margin="11,11,11,17"/>
+            <Rectangle VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="White" Height="180" Margin="30,30,30,80"/>
+
+            <TextBlock VerticalAlignment="Top" TextWrapping="Wrap" Margin="47,42,39,0" Height="144">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </TextBlock>
+
+
+        </Grid>
+
+
+
+        <!--Main grid end-->
     </Grid>
 
 </Window>

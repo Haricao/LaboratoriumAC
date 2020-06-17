@@ -1,12 +1,406 @@
 ﻿<Window x:Class="projekt_jp_kkmr_v1._0.HelperWindow1"
+        xmlns:oxy="http://oxyplot.codeplex.com"    
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projekt_jp_kkmr_v1._0"
         mc:Ignorable="d"
-        Title="HelperWindow1" Height="450" Width="800">
-    <Grid>
         
+        Title="Pomiar rzeczywistych RLC" 
+        Height="700 px" 
+        Width="1000 px"
+        BorderBrush="AliceBlue"
+        FontStyle="Normal"
+        FontFamily="Helvetica Neue"
+        FontSize="13">
+
+    <!--LISTA TODO (1 napisac kom. potem control + k potem control + h) -->
+
+
+    <!--Ustawianie styli-->
+    <Window.Resources>
+
+        <!--Styl przycisku do wyboru ćwiczenia-->
+        <Style TargetType="Button" x:Key="MainListButton">
+            <Setter Property="Height" Value="36" />
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5,0,8" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        </Style>
+
+
+        <!--Styl przycisków do obsługi programu-->
+        <Style TargetType="Button" x:Key="ControllerButtons">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="170" />
+            <Setter Property="Margin" Value="0,5,0,5" />
+
+        </Style>
+
+        <!--Styl czcionki tytułu-->
+        <Style TargetType="TextBlock" x:Key="TitleFont">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="FontFamily" Value="Helvetica Neue" />
+            <Setter Property="Foreground" Value="White" />
+
+        </Style>
+
+    </Window.Resources>
+
+
+    <Grid x:Name="Window1MainGrid">
+        <TabControl>
+
+            <!--Zakładka 1 Rezystancja-->
+            <TabItem Header="Rezystancja">
+                <Grid>
+
+
+                    <!--Tło programu-->
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/images/SecodaryWindowBackground.png"/>
+                    </Grid.Background>
+
+
+                    <!--Definicje kolumn-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Definicje wierszy-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="180"/>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="140"/>
+                        <RowDefinition Height="*" />
+
+                    </Grid.RowDefinitions>
+
+
+                    <!--Ozdobne prostokąty-->
+                    <Rectangle Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="27,68,14,13" Fill="Gray" Opacity="0.75" Grid.Column="1"/>
+                    <Rectangle Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="88,176,20,13" Fill="Gray" Opacity="0.75" Grid.Column="3"/>
+                    <Rectangle Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Height="200" Width="110" Fill="White" Margin="44,111,296,29" Grid.ColumnSpan="2"/>
+                    <Rectangle Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Height="200" Width="110" Fill="White" Margin="20,111,170,29"/>
+                    <Rectangle Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Fill="White" Margin="149,111,40,29"/>
+                    <Rectangle Grid.Column="3" Grid.Row="3" Fill="White" Margin="106,33,40,29" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+                    <!--Importowanie grafik-->
+                    <!--
+                    <Image Grid.Column="3" Grid.ColumnSpan="3" Source="/images/Lab1Cewka.png" Margin="51,1,23,10" Grid.RowSpan="2" Grid.Row="1"/>
+                    <Image Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Source="/images/CoilVector.png" Margin="119,129,46,29" Grid.RowSpan="2"/>-->
+
+                    <!--Opis sterowania-->
+                    <TextBlock Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="32" Width="259" Margin="41,75,0,0" Style="{StaticResource TitleFont}" Text="Sterowanie układem:" FontSize="26" Grid.Column="1"/>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="32"  Width="300" Margin="104,0,0,0" Style="{StaticResource TitleFont}" Text="Zmierzone wartości:" FontSize="26"/>
+
+                    <!--Glowny wykres-->
+                    <Border Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3"  Height="280" Margin="30,52,287,148" BorderBrush="Black" BorderThickness="2">
+                        <oxy:Plot x:Name="Plot1" Model="{Binding RezystorModel}"  Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Height="266" Width="465" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,7,4,3">
+
+                            <!-- Osie wykresy zanim wywołasz funkcjie. Muszą być takie same jak te w klasie oxyplotmodel-->
+                            <oxy:Plot.Axes>
+                                <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="100" />
+                                <oxy:LinearAxis Position="Left" Minimum="-100" Maximum="100" />
+                            </oxy:Plot.Axes>
+
+                        </oxy:Plot>
+                    </Border>
+
+
+
+
+                    <!-- Blok 1 NAPIĘCIE-->
+                    <TextBlock x:Name="Napiecie" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="71" Margin="48,115,31,0" Text="Napięcie:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Napiecie_Sterowanie"  Grid.Column="1" Grid.Row="3" Height="30" Width="60" Margin="53,139,37,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[V]" Grid.Column="1" Grid.Row="3" Margin="118,144,2,33" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
+                    <Slider x:Name="Suwak_Napiecie_RR" Minimum="0" Maximum="230" ValueChanged="Suwak_ValueChanged_RR_V" Grid.Column="1" Grid.Row="3" Height="22" Width="90" Margin="50,189,10,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Opacity="0.3" Grid.RowSpan="2"/>
+
+
+                    <!-- Blok 3 REZYSTANCJA-->
+                    <TextBlock x:Name="Rezystancja"   Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" Width="93" Margin="23,115,184,0" Text="Rezystancja:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Rezystancja_Sterowanie" Grid.Column="2" Grid.Row="3" Height="30" Width="60" Margin="28,139,212,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text='[&#937;]' Grid.Column="2" Grid.Row="3" Width="30" Margin="93,143,177,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold" RenderTransformOrigin="0.487,1.542" Height="23"/>
+                    <Slider x:Name="Rez_Suwak" Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="1000" ValueChanged="Suwak_ValueChanged_RR_R" Height="22" Width="90" Margin="28,189,182,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightYellow" Opacity="0.7" Grid.RowSpan="2"/>
+
+
+                    <!-- Blok 3 CZĘSTOTLIWOŚĆ-->
+                    <TextBlock x:Name="Frq"    Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" Width="104" Margin="150,114,46,0" Text="Częstotliwość:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Frq_Sterowanie" Grid.Column="2" Grid.Row="3" Height="30" Margin="156,139,83,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[Hz]" Grid.Column="2" Grid.Row="3" Width="37" Margin="223,143,40,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" RenderTransformOrigin="0.594,2.121" Height="23"/>
+                    <Slider x:Name="Frq_Suwak" Minimum="0" Maximum="60" ValueChanged="Suwak_ValueChanged_RR_T" Grid.Column="2" Grid.Row="3" Background="AliceBlue" Height="20" Margin="161,189,47,131" Grid.RowSpan="2"/>
+
+
+                    <!-- Blok 4 POJEMNOŚĆ-->
+                    <TextBlock x:Name="Pojemnosc"  Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" Width="104" Margin="48,21,298,0" Text="Pojemność:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="Pojemnosc_Sterowanie" Grid.Column="1" Grid.Row="4" Height="30" Width="60" Margin="53,42,37,68" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[pF]" Grid.Column="1" Grid.Row="4" Margin="119,48,1,69" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold" RenderTransformOrigin="0.55,3.745"/>
+                    <Slider x:Name="Suwak_Pojemnosc" Minimum="0" Maximum="100" ValueChanged="Suwak_ValueChanged_RR_P"  Grid.Column="1" Grid.Row="4"  Height="22" Width="90" Margin="48,81,12,37" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Red" Opacity="0.3"/>
+
+
+                    <!-- Blok 5 INDUKCYJNOŚĆ-->
+                    <TextBlock x:Name="Indukcyjnosc"  Text="Indukcyjność:"  Grid.Column="2" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="106"  FontSize="16" FontWeight="SemiBold" FontStyle="Italic" Margin="23,21,171,0"/>
+                    <TextBox x:Name="Indukcyjnosc_Sterowanie" Grid.Column="2" Grid.Row="4" Height="30" Width="60"  Background="AliceBlue" Opacity="0.5" Margin="28,42,212,68" />
+                    <TextBlock Text="[nH]" Grid.Column="2" Grid.Row="4"  Width="37" Height="34" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold" Margin="92,48,171,58"/>
+                    <Slider x:Name="Suwak_Indukcyjnosc" Minimum="0" Maximum="100" ValueChanged="Suwak_ValueChanged_RR_L" Height="22" Width="90"  VerticalAlignment="Center" HorizontalAlignment="Center" Background="PaleVioletRed" Opacity="0.7" Grid.Column="2" Grid.Row="4" Margin="28,81,182,37" />
+
+
+                    <!-- Blok 6 TEXT-->
+                    <TextBlock x:Name="Z" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="141" Margin="112,41,47,129" RenderTransformOrigin="0.894,0.224"/>
+                    <TextBlock x:Name="Z_IM" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140"  RenderTransformOrigin="0.894,0.224" Grid.ColumnSpan="2" Margin="261,43,49,127"/>
+                    <TextBlock x:Name="Z_Modul" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="115,80,45,90"/>
+                    <TextBlock x:Name="IRMS" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="118,116,42,54" />
+                    <TextBlock x:Name="IRL_RMS" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="124,157,36,13"  />
+                    <TextBlock x:Name="IC_RMS" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="125,194,35,116" Grid.RowSpan="2"   />
+                    <TextBlock x:Name="Faza" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="130,26,30,84"   />
+                </Grid>
+
+            </TabItem>
+
+
+            <TabItem Header="Indukcyjność">
+                <Grid>
+
+                    <!--Tło programu-->
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/images/SecodaryWindowBackground.png"/>
+                    </Grid.Background>
+
+
+                    <!--Definicje kolumn-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Definicje wierszy-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="180"/>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="140"/>
+                        <RowDefinition Height="*" />
+
+                    </Grid.RowDefinitions>
+
+                    <!--Ozdobne prostokąty-->
+                    <Rectangle Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="27,68,14,13" Fill="Gray" Opacity="0.75" Grid.Column="1"/>
+                    <Rectangle Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="88,176,20,13" Fill="Gray" Opacity="0.75" Grid.Column="3"/>
+                    <Rectangle Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Height="200" Width="110" Fill="White" Margin="44,111,296,29" Grid.ColumnSpan="2"/>
+                    <Rectangle Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Height="200" Width="110" Fill="White" Margin="20,111,170,29"/>
+                    <Rectangle Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Fill="White" Margin="149,111,40,29"/>
+                    <Rectangle Grid.Column="3" Grid.Row="3" Fill="White" Margin="106,33,40,37" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+                    <!--Importowanie grafik-->
+                    <!--<Image Grid.Column="3" Grid.ColumnSpan="3" Source="/images/Lab1Rezystor.png" Margin="51,1,23,10" Grid.RowSpan="2" Grid.Row="1"/>
+                    <Image Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Source="/images/ResistorVector.png" Margin="13,35,-12,-56" Grid.RowSpan="3"/>-->
+
+                    <!--glowny wykres-->
+                    <Border Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3"  Height="280" Margin="30,52,287,148" BorderBrush="Black" BorderThickness="2">
+                        <oxy:Plot x:Name="Plot2"   Model="{Binding CewkaModel}" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Height="266" Width="465" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,7,4,3">
+
+                            <!-- Osie wykresy zanim wywołasz funkcjie. Muszą być takie same jak te w klasie oxyplotmodel-->
+                            <oxy:Plot.Axes>
+                                <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="100" />
+                                <oxy:LinearAxis Position="Left" Minimum="-100" Maximum="100" />
+                            </oxy:Plot.Axes>
+
+                        </oxy:Plot>
+                    </Border>
+
+
+                    <!--Opis sterowania-->
+                    <TextBlock Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="32" Width="259" Margin="41,75,0,0" Style="{StaticResource TitleFont}" Text="Sterowanie układem:" FontSize="26" Grid.Column="1"/>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="32"  Width="300" Margin="104,0,0,0" Style="{StaticResource TitleFont}" Text="Zmierzone wartości:" FontSize="26"/>
+
+                    <!-- Blok 1 NAPIĘCIE-->
+                    <TextBlock x:Name="Napiecie_L_Rz"  Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="71" Margin="48,115,31,0" Text="Napięcie:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Napiecie_Sterowanie_LR" Grid.Column="1" Grid.Row="3" Height="30" Width="60" Margin="53,139,37,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[V]" Grid.Column="1" Grid.Row="3" Margin="118,144,2,33" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
+                    <Slider x:Name="Suwak_Napiecie_LR" Minimum="0" Maximum="230" ValueChanged="Suwak_ValueChanged_LR_V" Grid.Column="1" Grid.Row="3" Height="22" Width="90" Margin="50,189,10,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Opacity="0.3" Grid.RowSpan="2"/>
+
+
+                    <!-- Blok 2 REZYSTANCJA-->
+                    <TextBlock x:Name="Rezystancja_L_Rz"  Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" Width="93" Margin="23,115,184,0" Text="Rezystancja:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Rezystancja_Sterowanie_LR" Grid.Column="2" Grid.Row="3" Height="30" Width="60" Margin="28,139,212,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text='[&#937;]' Grid.Column="2" Grid.Row="3" Width="30" Margin="93,143,177,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold" RenderTransformOrigin="0.487,1.542" Height="23"/>
+                    <Slider x:Name="Suwak_Rezystancja_LR" Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="100" ValueChanged="Suwak_ValueChanged_LR_R" Height="22" Width="90" Margin="28,189,182,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightYellow" Opacity="0.7" Grid.RowSpan="2"/>
+
+
+
+                    <!-- Blok 3 INDUKCYJNOSC-->
+                    <TextBlock x:Name="Indukcyjnosc_L_Rz"  Text="Indukcyjność:"  Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="107" Margin="50,19,293,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="Indukcyjnosc_Sterowanie_LR" Grid.Column="1" Grid.Row="4" Height="30" Width="60" Margin="49,41,41,69" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[H]" Grid.Column="1" Grid.Row="4" Margin="114,42,6,75" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold" RenderTransformOrigin="-0.403,5.283"/>
+                    <Slider x:Name="Suwak_Indukcyjnosc_LR" Minimum="0" Maximum="100" ValueChanged="Suwak_ValueChanged_LR_L" Height="22" Width="90" Margin="53,73.8,7.4,44.2" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Red" Opacity="0.3" Grid.Column="1" Grid.Row="4"/>
+
+
+                    <!-- Blok 4 CZĘSTOTLIWOŚĆ-->
+                    <TextBlock x:Name="Frq_L_Rz"  Text="Częstotliwość:" Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="104" Margin="151,115,45,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Frq_Sterowanie_LR" Grid.Column="2" Grid.Row="3" Height="30" Margin="156,139,83,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[Hz]" Grid.Column="2" Grid.Row="3" Margin="222,144,45,33" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
+                    <Slider x:Name="Suwak_Frq_LR" Minimum="0" Maximum="60" ValueChanged="Suwak_ValueChanged_LR_T" Grid.Column="2" Grid.Row="3" Background="AliceBlue" Height="20" Margin="161,189,47,131" Grid.RowSpan="2"/>
+
+                    <!-- Blok 5 POJEMNOŚĆ-->
+                    <TextBlock x:Name="Pojemnosc_L_Rz"  Text="Pojemność:" Grid.Column="2" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="104" Margin="31,15,165,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic" RenderTransformOrigin="0.559,4.913"/>
+                    <TextBox x:Name="Pojemnosc_Sterowanie_LR" Grid.Column="2" Grid.Row="4" Height="30"  Background="AliceBlue" Opacity="0.5" Margin="25,37,203,73"/>
+                    <TextBlock Text="[pF]" Grid.Column="2" Grid.Row="4" Margin="99,44,168,73" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold" RenderTransformOrigin="-1.148,3.613"/>
+                    <Slider x:Name="Suwak_Pojemnosc_LR" Minimum="0" Maximum="50" ValueChanged="Suwak_ValueChanged_LR_C" Grid.Column="2" Grid.Row="4" Background="PaleVioletRed" Opacity="0.7" Height="20" Margin="30.6,73.8,177.4,46.2"/>
+
+                    <!--TEXT-->
+                    <TextBlock x:Name="Z_L" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="141" Margin="112,39,47,131" RenderTransformOrigin="0.894,0.224"/>
+                    <TextBlock x:Name="Z_IM_L" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140"  RenderTransformOrigin="0.894,0.224" Margin="267,39,43,131" Grid.ColumnSpan="2"/>
+                    <TextBlock x:Name="Z_Modul_L" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="115,79,45,91"/>
+                    <TextBlock x:Name="IRMS_L" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="119,115,41,55" />
+                    <TextBlock x:Name="IRL_RMS_L" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="125,155,35,15"  />
+                    <TextBlock x:Name="IC_RMS_L" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="125,193,35,117" Grid.RowSpan="2"   />
+                    <TextBlock x:Name="Faza_L" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="131,25,29,85"   />
+
+
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Pojemność">
+                <Grid>
+
+                    <!--Tło programu-->
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/images/SecodaryWindowBackground.png"/>
+                    </Grid.Background>
+
+
+                    <!--Definicje kolumn-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Definicje wierszy-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="180"/>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="140"/>
+                        <RowDefinition Height="*" />
+
+                    </Grid.RowDefinitions>
+
+                    <!--Ozdobne prostokąty-->
+                    <Rectangle Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="27,68,14,13" Fill="Gray" Opacity="0.75" Grid.Column="1"/>
+                    <Rectangle Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="88,176,20,13" Fill="Gray" Opacity="0.75" Grid.Column="3"/>
+                    <Rectangle Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Height="200" Width="110" Fill="White" Margin="44,111,296,29" Grid.ColumnSpan="2"/>
+                    <Rectangle Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Height="200" Width="110" Fill="White" Margin="20,111,170,29"/>
+                    <Rectangle Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Fill="White" Margin="149,111,40,29"/>
+                    <Rectangle Grid.Column="3" Grid.Row="3" Fill="White" Margin="106,33,40,44" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+                    <!--Importowanie grafik-->
+                    <!--
+                    <Image Grid.Column="3" Grid.ColumnSpan="3" Source="/images/Lab1Cewka.png" Margin="51,1,23,10" Grid.RowSpan="2" Grid.Row="1"/>
+                    <Image Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Source="/images/CoilVector.png" Margin="119,129,46,29" Grid.RowSpan="2"/>-->
+
+                    <!--Opis sterowania-->
+                    <TextBlock Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="32" Width="259" Margin="41,75,0,0" Style="{StaticResource TitleFont}" Text="Sterowanie układem:" FontSize="26" Grid.Column="1"/>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="32"  Width="300" Margin="104,0,0,0" Style="{StaticResource TitleFont}" Text="Zmierzone wartości:" FontSize="26"/>
+
+                    <!--Glowny wykres-->
+
+                    <Border Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3"  Height="280" Margin="30,52,287,148" BorderBrush="Black" BorderThickness="2">
+                        <oxy:Plot x:Name="Plot3"   Model="{Binding KondensatorModel}" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Height="266" Width="465" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,7,4,3">
+
+                            <!-- Osie wykresy zanim wywołasz funkcjie. Muszą być takie same jak te w klasie oxyplotmodel-->
+                            <oxy:Plot.Axes>
+                                <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="100" />
+                                <oxy:LinearAxis Position="Left" Minimum="-100" Maximum="100" />
+                            </oxy:Plot.Axes>
+
+                        </oxy:Plot>
+                    </Border>
+
+                    <!-- Blok 1 NAPIĘCIE-->
+                    <TextBlock x:Name="Napiecie_CR"  Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="71" Margin="48,115,31,0" Text="Napięcie:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Napiecie_Sterowanie_CR" Grid.Column="1" Grid.Row="3" Height="30" Width="60" Margin="53,139,37,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[V]" Grid.Column="1" Grid.Row="3" Margin="118,144,2,33" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
+                    <Slider x:Name="Suwak_Napiecie_CR" Minimum="0" Maximum="230" ValueChanged="Suwak_ValueChanged_CR_V" Grid.Column="1" Grid.Row="3" Height="22" Width="90" Margin="50,189,10,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Opacity="0.3" Grid.RowSpan="2"/>
+
+
+                    <!-- Blok 2 REZYSTANCJA-->
+                    <TextBlock x:Name="Rezystancja_C_Rz"  Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" Width="94" Margin="23,115,183,0" Text="Rezystancja:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Rezystancja_Sterowanie_CR" Grid.Column="2" Grid.Row="3" Height="30" Width="60" Margin="29,139,211,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text='[&#937;]' Grid.Column="2" Grid.Row="3" Width="30" Margin="100,144,170,33" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold" RenderTransformOrigin="0.487,1.542" Height="23"/>
+                    <Slider x:Name="Suwak_Rezystancja_CR" Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="10" ValueChanged="Suwak_ValueChanged_CR_R" Height="22" Width="90" Margin="23,189,187,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightYellow" Opacity="0.7" Grid.RowSpan="2"/>
+
+
+
+                    <!-- Blok 3 INDUKCYJNOSC-->
+                    <TextBlock x:Name="Indukcyjnosc_C_Rz"  Text="Indukcyjność:"  Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="106" Margin="44,21,0,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Indukcyjnosc_Sterowanie_CR" Grid.Column="1" Grid.Row="4" Height="30" Width="60" Margin="49,41,41,69" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[H]" Grid.Column="1" Grid.Row="4" Margin="114,42,6,75" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold" RenderTransformOrigin="-0.403,5.283"/>
+                    <Slider x:Name="Suwak_Indukcyjnosc_CR" Minimum="0" Maximum="100" ValueChanged="Suwak_ValueChanged_CR_L"  Height="22" Width="90" Margin="52,80,8,38" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Red" Opacity="0.3" Grid.Column="1" Grid.Row="4"/>
+
+
+                    <!-- Blok 4 CZĘSTOTLIWOŚĆ-->
+                    <TextBlock x:Name="Frq_C_Rz"  Text="Częstotliwość:" Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="104" Margin="149,115,47,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Frq_Sterowanie_CR" Grid.Column="2" Grid.Row="3" Height="30" Margin="156,139,83,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[Hz]" Grid.Column="2" Grid.Row="3" Margin="222,144,45,33" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
+                    <Slider x:Name="Suwak_Frq_CR" Minimum="0" Maximum="60" ValueChanged="Suwak_ValueChanged_CR_T"  Grid.Column="2" Grid.Row="3" Background="AliceBlue" Height="20" Margin="156,189,52,131" Grid.RowSpan="2"/>
+
+
+                   
+
+                    <!-- Blok 5 POJEMNOŚĆ-->
+                    <TextBlock x:Name="Pojemność_C_Rz"  Text="Pojemność:" Grid.Column="2" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="104" Margin="26,23,170,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic" RenderTransformOrigin="-0.757,4.438"/>
+                    <TextBox x:Name="Pojemnosc_Sterowanie_CR" Grid.Column="2" Grid.Row="4" Background="AliceBlue" Opacity="0.5" Margin="29,43,205,69"/>
+                    <TextBlock Text="[uF]" Grid.Column="2" Grid.Row="4" Margin="101,46,144,71" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold" RenderTransformOrigin="-3.242,4.409"/>
+                    <Slider x:Name="Suwak_Pojemnosc_CR" Minimum="0" Maximum="100" ValueChanged="Suwak_ValueChanged_CR_C" Grid.Column="2" Grid.Row="4" Background="PaleVioletRed" Height="20" Margin="29,80,180,40" Opacity="0.7"/>
+
+
+                    <!-- Blok 6 UPŁYWNOŚĆ-->
+                    <TextBlock x:Name="Upływność_C_Rz"  Text="Upływność:" Grid.Column="2" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="104" Margin="156,23,40,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
+                    <TextBox x:Name="Uplywnosc_Sterowanie_CR" Grid.Column="2" Grid.Row="4" Background="AliceBlue" Opacity="0.5" Margin="156,43,72,69"/>
+                    <TextBlock Text='[M&#937;]' Grid.Column="2" Grid.Row="4" Margin="230,46,14,72" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold" RenderTransformOrigin="-0.052,0.896"/>
+                    <Slider x:Name="Suwak_Uplywnosc" Minimum="0" Maximum="10" ValueChanged="Suwak_ValueChanged_CR_U" Grid.Column="2" Grid.Row="4" Background="Aquamarine" Opacity="0.3" Height="20" Margin="156,76,52,44"/>
+
+                    <!--text-->
+                    <TextBlock x:Name="Z_C" Grid.Column="6" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="141" Margin="120,45,39,125" RenderTransformOrigin="0.894,0.224"/>
+                    <TextBlock x:Name="Z_IM_C" Grid.Column="6" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140"  RenderTransformOrigin="0.894,0.224" Grid.ColumnSpan="2" Margin="270,51,40,119"/>
+                    <TextBlock x:Name="Z_Modul_C" Grid.Column="6" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="124,83,36,87"/>
+                    <TextBlock x:Name="IRMS_C" Grid.Column="6" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="128,117,32,53" />
+                    <TextBlock x:Name="IRL_RMS_C" Grid.Column="6" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="130,154,30,16"  />
+                    <TextBlock x:Name="IC_RMS_C" Grid.Column="6" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="133,188,27,122" Grid.RowSpan="2"   />
+                    <TextBlock x:Name="Faza_C" Grid.Column="6" Grid.Row="4" HorizontalAlignment="Center" Height="30" Width="140" RenderTransformOrigin="0.894,0.224" Margin="135,27,25,83"   />
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
     </Grid>
+
 </Window>
+

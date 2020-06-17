@@ -24,8 +24,9 @@ namespace projekt_jp_kkmr_v1._0
         {
             InitializeComponent();
             WindowOnScreenLocation();
+            
         }
-
+        
         // Pozycojonowanie okna pod głównym oknem
         private void WindowOnScreenLocation()
         {
@@ -42,39 +43,149 @@ namespace projekt_jp_kkmr_v1._0
         private void Suwak_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             // Przypisanie wartości z suwaka 
-            Properties.Settings.Default.Napiecie = Suwak_Napiecie.Value;
-            // Wyświetlanie 
-            Napiecie_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie));
-            //Ustawienie wartości wykresu, 2)
-            OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
-            this.DataContext = oxyPlotModel; // To pozwala połączyć kontrolki z polami klasy OxyPlotModel
-            //Wyświetlanie obliczonekj wartości prądu
-            Prad.Text = Convert.ToString(1000 * Math.Round(Properties.Settings.Default.Napiecie / Properties.Settings.Default.Rezystancja, 4));
-            Ur.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie, 4));
+            Properties.Settings.Default.Wybor = 0;
+            if (Properties.Settings.Default.Wybor == 0)
+            {
+                Properties.Settings.Default.Napiecie = Suwak_Napiecie.Value;
+
+                // Przepisanie danych do klasy Dane
+                Dane dane = new Dane(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
+
+                // Wyświetlanie     
+                Napiecie_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie));
+
+                //Ustawienie wartości wykresu, 2)
+                OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
+                this.DataContext = oxyPlotModel; // To pozwala połączyć kontrolki z polami klasy OxyPlotModel
+
+                //Wyświetlanie obliczonekj wartości prądu
+                Prad.Text = Convert.ToString(1000 * Math.Round(Dane.Prad, 4));
+                Ur.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie, 4));
+            }
+            
         }
 
 
         private void Suwak_ValueChanged_3(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Properties.Settings.Default.Rezystancja = Rez_Suwak.Value;
-            Rezystancja_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Rezystancja));
+            Properties.Settings.Default.Wybor = 0;
+            if (Properties.Settings.Default.Wybor == 0)
+            {
+                Dane dane = new Dane(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
 
-            OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
-            this.DataContext = oxyPlotModel;
+                Properties.Settings.Default.Rezystancja = Rez_Suwak.Value;
+                Rezystancja_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Rezystancja));
 
-            Prad.Text = Convert.ToString(1000 * Math.Round(Properties.Settings.Default.Napiecie / Properties.Settings.Default.Rezystancja, 6));
-            Ur.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie, 4));
+                OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
+                this.DataContext = oxyPlotModel;
+
+                Prad.Text = Convert.ToString(1000 * Math.Round(Dane.Prad, 4));
+                Ur.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie, 4));
+            }
         }
+
 
 
 
         private void Suwak_ValueChanged_4(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Properties.Settings.Default.Frq = Frq_Suwak.Value;
-            Frq_Sterowanie.Text = Convert.ToString(Properties.Settings.Default.Frq);
+            Properties.Settings.Default.Wybor = 0;
+            if (Properties.Settings.Default.Wybor == 0)
+            {
+                Dane dane = new Dane(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
+                Properties.Settings.Default.Frq = Frq_Suwak.Value;
+                Frq_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Frq));
 
-            OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
-            this.DataContext = oxyPlotModel;
+                OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
+                this.DataContext = oxyPlotModel;
+            }
+        }
+
+        private void Suwak_ValueChanged_KV(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Properties.Settings.Default.Wybor = 1;
+            if (Properties.Settings.Default.Wybor == 1)
+            {
+                Properties.Settings.Default.Napiecie_C = Suwak_Napiecie_C.Value;
+                Napiecie_Sterowanie_C.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie_C));
+
+                OxyPlotModel_Kondensator oxyPlotModel = new OxyPlotModel_Kondensator(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Pojemnosc, Properties.Settings.Default.Frq_C);
+                this.DataContext = oxyPlotModel;
+
+            }
+        }
+
+        private void Suwak_ValueChanged_KP(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Properties.Settings.Default.Wybor = 1;
+            if (Properties.Settings.Default.Wybor == 1)
+            {
+                Properties.Settings.Default.Pojemnosc = Suwak_Pojemnosc.Value;
+                Pojemnosc_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Pojemnosc));
+
+                OxyPlotModel_Kondensator oxyPlotModel = new OxyPlotModel_Kondensator(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Pojemnosc, Properties.Settings.Default.Frq_C);
+                this.DataContext = oxyPlotModel;
+
+            }
+
+        }
+
+        private void Suwak_ValueChanged_KF(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Properties.Settings.Default.Wybor = 1;
+            if (Properties.Settings.Default.Wybor == 1)
+            {
+                Properties.Settings.Default.Frq_C = Suwak_Frq_C.Value;
+                Frq_Sterowanie_C.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Frq_C));
+
+                OxyPlotModel_Kondensator oxyPlotModel = new OxyPlotModel_Kondensator(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Pojemnosc, Properties.Settings.Default.Frq_C);
+                this.DataContext = oxyPlotModel;
+            }
+
+        }
+
+        private void Suwak_ValueChanged_LV(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Properties.Settings.Default.Wybor = 2;
+            if (Properties.Settings.Default.Wybor == 2)
+            {
+                Properties.Settings.Default.Napiecie_L = Suwak_Napiecie_L.Value;
+                Napiecie_Sterowanie_L.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie_L));
+
+                OxyPlotModel_Cewka oxyPlotModel = new OxyPlotModel_Cewka(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Indukcyjnosc, Properties.Settings.Default.Frq_L);
+                this.DataContext = oxyPlotModel;
+
+            }
+
+        }
+
+        private void Suwak_ValueChanged_LP(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Properties.Settings.Default.Wybor = 2;
+            if (Properties.Settings.Default.Wybor == 2)
+            {
+                Properties.Settings.Default.Indukcyjnosc = Suwak_Indukcyjnosc.Value;
+                Indukcyjnosc_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Indukcyjnosc));
+
+                OxyPlotModel_Cewka oxyPlotModel = new OxyPlotModel_Cewka(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Indukcyjnosc, Properties.Settings.Default.Frq_L);
+                this.DataContext = oxyPlotModel;
+
+            }
+
+        }
+
+        private void Suwak_ValueChanged_LF(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Properties.Settings.Default.Wybor = 2;
+            if (Properties.Settings.Default.Wybor == 2)
+            {
+                Properties.Settings.Default.Frq_L = Suwak_Frq_L.Value;
+                Frq_Sterowanie_L.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Frq_L));
+
+                OxyPlotModel_Cewka oxyPlotModel = new OxyPlotModel_Cewka(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Indukcyjnosc, Properties.Settings.Default.Frq_L);
+                this.DataContext = oxyPlotModel;
+            }
+
         }
     }
 }

@@ -20,18 +20,18 @@ namespace projekt_jp_kkmr_v1._0
             if (Frq != 0)//Dopracuj zakresy! Prąd nie może nigdy wyprzedzić napięcia!!!
             {
                 Func<double, double> Wykres_Nap = (x) => Math.Sqrt(2) * (Napiecie / 2.3) * (Math.Sin(x * (Frq / 160)));
-                Func<double, double> Wykres_Prad = (x) => (Math.Sqrt(2) * (Math.Sin(x * (Frq / 160)))) * ((Napiecie) / (Rezystancja / 1000));
+                Func<double, double> Wykres_Prad = (x) => (Math.Sqrt(2) * (Math.Sin(x * (Frq / 160)))) * ((Napiecie) / (Rezystancja/10));
                 //Ustawienie zakresu rysowania funkcja, start, koniec"
-                this.plotModel.Series.Add(new FunctionSeries(Wykres_Nap, 0, 100, 0.001, "Napięcie"));
-                this.plotModel.Series.Add(new FunctionSeries(Wykres_Prad, 0, 100, 0.001, "Prąd"));
+                this.plotModel.Series.Add(new FunctionSeries(Wykres_Nap, 0, 100, 0.1, "Napięcie"));
+                this.plotModel.Series.Add(new FunctionSeries(Wykres_Prad, 0, 100, 0.1, "Prąd"));
             }
             else
             {
                 Func<double, double> Wykres_Nap = (x) => Napiecie / 2.3;
                 Func<double, double> Wykres_Prad = (x) => (Napiecie) / (Rezystancja) * 95;
                 //Ustawienie zakresu rysowania funkcja, start, koniec"
-                this.plotModel.Series.Add(new FunctionSeries(Wykres_Nap, 0, 100, 0.001, "Napięcie"));
-                this.plotModel.Series.Add(new FunctionSeries(Wykres_Prad, 0, 100, 0.001, "Prąd"));
+                this.plotModel.Series.Add(new FunctionSeries(Wykres_Nap, 0, 100, 0.1, "Napięcie"));
+                this.plotModel.Series.Add(new FunctionSeries(Wykres_Prad, 0, 100, 0.1, "Prąd"));
             }
 
 

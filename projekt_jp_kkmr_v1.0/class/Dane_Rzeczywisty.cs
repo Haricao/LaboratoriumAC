@@ -37,14 +37,15 @@ namespace projekt_jp_kkmr_v1._0
 
                     double _pojemnosc_mnoznik = _pojemnosc * 10e-12;
                     double _indukcyjnosc_mnoznik = _indukcyjnosc * 10e-9;
+                    double _rezystancja_mnoznik = _rezystancja;
 
-                    Impedancja = (_rezystancja / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik, 2)) / (Math.Pow(_rezystancja, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik, 2) - (2 * _indukcyjnosc_mnoznik / _pojemnosc_mnoznik) + (1 / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik, 2))) * 0.1;
-                    Impedancja_Urojona = ((_indukcyjnosc_mnoznik / (2 * Math.PI * _frq * Math.Pow(_pojemnosc_mnoznik, 2))) - (2 * Math.PI * _frq * Math.Pow(_indukcyjnosc_mnoznik, 2) / _pojemnosc_mnoznik) - (Math.Pow(_rezystancja, 2) / 2 * Math.PI * _frq * _pojemnosc_mnoznik)) / (Math.Pow(_rezystancja, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik, 2) - (2 * _indukcyjnosc_mnoznik / _pojemnosc_mnoznik) + (1 / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik, 2)));
+                    Impedancja = (_rezystancja_mnoznik / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik, 2)) / (Math.Pow(_rezystancja_mnoznik, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik, 2) - (2 * _indukcyjnosc_mnoznik / _pojemnosc_mnoznik) + (1 / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik, 2))) * 0.1;
+                    Impedancja_Urojona = ((_indukcyjnosc_mnoznik / (2 * Math.PI * _frq * Math.Pow(_pojemnosc_mnoznik, 2))) - (2 * Math.PI * _frq * Math.Pow(_indukcyjnosc_mnoznik, 2) / _pojemnosc_mnoznik) - (Math.Pow(_rezystancja_mnoznik, 2) / 2 * Math.PI * _frq * _pojemnosc_mnoznik)) / (Math.Pow(_rezystancja_mnoznik, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik, 2) - (2 * _indukcyjnosc_mnoznik / _pojemnosc_mnoznik) + (1 / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik, 2)));
                     Modul_Z = Math.Sqrt(Math.Pow(Impedancja, 2) + Math.Pow(Impedancja_Urojona, 2));
                     Rezystancja_R = Impedancja;
 
                     Irms = _napiecie / Modul_Z;
-                    Z_1 = Math.Sqrt((Math.Pow(_rezystancja, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik, 2))) * 0.1; // j(?)
+                    Z_1 = Math.Sqrt((Math.Pow(_rezystancja_mnoznik, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik, 2))) * 0.1; // j(?)
                     Ic_rms = (Irms - Irl_rms);
                     Irl_rms = _napiecie / Z_1;
 
@@ -53,15 +54,37 @@ namespace projekt_jp_kkmr_v1._0
                     Faza = Math.Atan(Impedancja_Urojona / Impedancja);
                     break;
 
-                case 1:
+                case 1:           
 
-                    //Dla pojemności rzeczywistej
+                    
 
-                    //Pousuwać potem zbędne nawiasy
+                    double _pojemnosc_mnoznik2 = _pojemnosc * 10e-12;
+                    double _indukcyjnosc_mnoznik2 = _indukcyjnosc * 10e-3;
 
-                    double _uplywnosc_mnoznik1 = _uplywnosc * 10e6;
-                    double _indukcyjnosc_mnoznik1 = _indukcyjnosc * 10e-9;
-                    double _pojemnosc_mnoznik1 = _pojemnosc * 10e-6;
+                    Impedancja = (_rezystancja / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik2, 2)) / (Math.Pow(_rezystancja, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik2, 2) - (2 * (_indukcyjnosc_mnoznik2 / _pojemnosc_mnoznik2)) + (1 / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik2, 2)));
+                    Impedancja_Urojona = ((_indukcyjnosc_mnoznik2 / (2 * Math.PI * _frq * Math.Pow(_pojemnosc_mnoznik2, 2))) - (2 * Math.PI * _frq * Math.Pow(_indukcyjnosc_mnoznik2, 2) / _pojemnosc_mnoznik2) - (Math.Pow(_rezystancja, 2) / 2 * Math.PI * _frq * _pojemnosc_mnoznik2)) / (Math.Pow(_rezystancja, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik2, 2) - (2 * _indukcyjnosc_mnoznik2 / _pojemnosc_mnoznik2) + (1 / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik2, 2)));
+                    Modul_Z = Math.Sqrt(Math.Pow(Impedancja, 2) + Math.Pow(Impedancja_Urojona, 2));
+                    Rezystancja_R = Impedancja;
+                    Irms = _napiecie / Modul_Z;
+                    Z_1 = Math.Sqrt((Math.Pow(_rezystancja, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik2, 2))); // j(?)
+                    Irl_rms = _napiecie / Z_1;
+                    Ic_rms = _napiecie * 2 * Math.PI * _frq * _pojemnosc_mnoznik2;
+
+
+
+                    Faza = (Math.Atan(Impedancja_Urojona / Impedancja));
+
+
+
+                    break;
+
+                case 2:
+
+                    //Dla indukcyjności rzeczywistej 
+
+                    double _uplywnosc_mnoznik1 = _uplywnosc * 1000000;
+                    double _indukcyjnosc_mnoznik1 = _indukcyjnosc * 0.000000001;
+                    double _pojemnosc_mnoznik1 = _pojemnosc * 0.000001;
 
 
 
@@ -82,31 +105,6 @@ namespace projekt_jp_kkmr_v1._0
                     Ir_rms = _napiecie / _uplywnosc_mnoznik1;
 
                     Faza = 360 - (Math.Atan(Impedancja / Impedancja_Urojona));
-
-
-
-
-                    break;
-
-                case 2:
-
-                    //Dla indukcyjności rzeczywistej 
-
-                    double _pojemnosc_mnoznik2 = _pojemnosc * 10e-12;
-                    double _indukcyjnosc_mnoznik2 = _indukcyjnosc * 10e-3;
-
-                    Impedancja = (_rezystancja / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik2, 2)) / (Math.Pow(_rezystancja, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik2, 2) - (2 * _indukcyjnosc_mnoznik2 / _pojemnosc_mnoznik2) + (1 / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik2, 2))) * 0.1;
-                    Impedancja_Urojona = ((_indukcyjnosc_mnoznik2 / (2 * Math.PI * _frq * Math.Pow(_pojemnosc_mnoznik2, 2))) - (2 * Math.PI * _frq * Math.Pow(_indukcyjnosc_mnoznik2, 2) / _pojemnosc_mnoznik2) - (Math.Pow(_rezystancja, 2) / 2 * Math.PI * _frq * _pojemnosc_mnoznik2)) / (Math.Pow(_rezystancja, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik2, 2) - (2 * _indukcyjnosc_mnoznik2 / _pojemnosc_mnoznik2) + (1 / Math.Pow(2 * Math.PI * _frq * _pojemnosc_mnoznik2, 2)));
-                    Modul_Z = Math.Sqrt(Math.Pow(Impedancja, 2) + Math.Pow(Impedancja_Urojona, 2));
-                    Rezystancja_R = Impedancja;
-                    Irms = _napiecie / Modul_Z;
-                    Irl_rms = _napiecie / Z_1;
-                    Ic_rms = _napiecie * 2 * Math.PI * _frq * _pojemnosc_mnoznik2;
-
-                    Z_1 = Math.Sqrt((Math.Pow(_rezystancja, 2) + Math.Pow(2 * Math.PI * _frq * _indukcyjnosc_mnoznik2, 2))); // j(?)
-
-                    Faza = (Math.Atan(Impedancja_Urojona / Impedancja));
-
 
 
                     break;

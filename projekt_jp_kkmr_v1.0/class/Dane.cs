@@ -21,14 +21,22 @@ namespace projekt_jp_kkmr_v1._0
                 
                 case 0:
 
-                    Prad = _napiecie / _rezystancja;
+                    Prad = _napiecie / (_rezystancja*1000);
+                    
 
                     break;
                 
                 case 1:
-                   
+
+                    Prad = _napiecie / (2 * Math.PI * _frq * (_rezystancja)); //Rezystancja = indukcyjnosc
 
 
+
+                    break;
+
+                case 2:
+
+                    Prad = _napiecie * 2 * Math.PI * _frq * (_rezystancja/1000000);
 
                     break;
             }

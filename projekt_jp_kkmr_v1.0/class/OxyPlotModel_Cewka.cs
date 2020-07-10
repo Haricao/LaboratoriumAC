@@ -18,11 +18,11 @@ namespace projekt_jp_kkmr_v1._0
             this.plotModel = new PlotModel { };
 
             Func<double, double> Wykres_Nap = (x) => Math.Sqrt(2) * (Napiecie / 2.3) * (Math.Sin(x * (Frq / 160) + (Math.PI / 2)));
-            Func<double, double> Wykres_Prad = (x) => Math.Sqrt(2) * (Napiecie / (Indukcyjnosc / 100)) * Math.Sin(x * (Frq / 160));
+            Func<double, double> Wykres_Prad = (x) => Math.Sqrt(2) * (Napiecie / (Indukcyjnosc/10)) * Math.Sin(x * (Frq / 160));
 
             //Ustawienie zakresu rysowania funkcja, start, koniec"
-            this.plotModel.Series.Add(new FunctionSeries(Wykres_Nap, 0, 100, 0.001));
-            this.plotModel.Series.Add(new FunctionSeries(Wykres_Prad, 0, 100, 0.001));
+            this.plotModel.Series.Add(new FunctionSeries(Wykres_Nap, 0, 100, 0.1));
+            this.plotModel.Series.Add(new FunctionSeries(Wykres_Prad, 0, 100, 0.1));
 
 
             plotModel.Axes.Add(new LinearAxis(AxisPosition.Bottom, 0, 100));

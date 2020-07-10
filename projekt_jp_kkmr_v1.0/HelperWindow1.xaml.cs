@@ -53,20 +53,19 @@ namespace projekt_jp_kkmr_v1._0
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq, Properties.Settings.Default.Indukcyjnosc, Properties.Settings.Default.Pojemnosc, Properties.Settings.Default.Uplywnosc );
 
                 // Wyświetlanie     
-                 Napiecie_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie));
-
+                 
                 //Ustawienie wartości wykresu, 2)
                 OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
                 this.DataContext = oxyPlotModel; // To pozwala połączyć kontrolki z polami klasy OxyPlotModel
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS.Text = "Ic= "+Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4))+ " [µA]";
+                Faza.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4))+ " °";
 
             }
 
@@ -81,20 +80,19 @@ namespace projekt_jp_kkmr_v1._0
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq, Properties.Settings.Default.Indukcyjnosc, Properties.Settings.Default.Pojemnosc, Properties.Settings.Default.Uplywnosc);
 
                 Properties.Settings.Default.Rezystancja = Rez_Suwak.Value;
-                Rezystancja_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Rezystancja));
+                
 
                 OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
                 this.DataContext = oxyPlotModel;
 
 
-                Z.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z,12));
-                IRMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
 
+                Z_Modul.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS.Text = "Ic= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4)) + " [µA]";
+                Faza.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4)) + " °";
             }
 
         }
@@ -106,18 +104,17 @@ namespace projekt_jp_kkmr_v1._0
             {
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq, Properties.Settings.Default.Indukcyjnosc, Properties.Settings.Default.Pojemnosc, Properties.Settings.Default.Uplywnosc);
                 Properties.Settings.Default.Frq = Frq_Suwak.Value;
-                Frq_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Frq));
-
+                
                 OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
                 this.DataContext = oxyPlotModel;
 
-                Z.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS.Text = "Ic= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4)) + " [µA]";
+                Faza.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4)) + " °";
 
             }
 
@@ -130,16 +127,15 @@ namespace projekt_jp_kkmr_v1._0
             {
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq, Properties.Settings.Default.Indukcyjnosc, Properties.Settings.Default.Pojemnosc, Properties.Settings.Default.Uplywnosc);
                 Properties.Settings.Default.Pojemnosc = Suwak_Pojemnosc.Value;
-                Pojemnosc_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Pojemnosc));
 
-                Z.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
 
+                Z.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS.Text = "Ic= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4)) + " [µA]";
+                Faza.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4)) + " °";
 
             }
 
@@ -152,15 +148,15 @@ namespace projekt_jp_kkmr_v1._0
             {
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq, Properties.Settings.Default.Indukcyjnosc, Properties.Settings.Default.Pojemnosc, Properties.Settings.Default.Uplywnosc);
                 Properties.Settings.Default.Indukcyjnosc = Suwak_Indukcyjnosc.Value;
-                Indukcyjnosc_Sterowanie.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Indukcyjnosc));
 
-                Z.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+
+                Z.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS.Text = "Ic= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4)) + " [µA]";
+                Faza.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4)) + " °";
 
             }
 
@@ -177,20 +173,20 @@ namespace projekt_jp_kkmr_v1._0
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Rezystancja_L, Properties.Settings.Default.Frq_L, Properties.Settings.Default.Indukcyjnosc_L, Properties.Settings.Default.Pojemnosc_L, Properties.Settings.Default.Uplywnosc);
 
                 // Wyświetlanie     
-                Napiecie_Sterowanie_LR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie_L));
+               
 
                 //Ustawienie wartości wykresu, 2)
                 OxyPlotModel_Cewka oxyPlotModel = new OxyPlotModel_Cewka(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Indukcyjnosc_L, Properties.Settings.Default.Frq_L);
                 this.DataContext = oxyPlotModel; // To pozwala połączyć kontrolki z polami klasy OxyPlotModel
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_L.Text = "Z= " +  Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+                
+                Z_Modul_L.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS_L.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS_L.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS_L.Text = "Ic= "+Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4)) + " [µA]";
+                Faza_L.Text = "ρ= "+ Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4)) + " [°]";
 
             }
         }
@@ -207,20 +203,20 @@ namespace projekt_jp_kkmr_v1._0
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Rezystancja_L, Properties.Settings.Default.Frq_L, Properties.Settings.Default.Indukcyjnosc_L, Properties.Settings.Default.Pojemnosc_L, Properties.Settings.Default.Uplywnosc);
 
                 // Wyświetlanie     
-                Indukcyjnosc_Sterowanie_LR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Indukcyjnosc_L));
+                
 
                 //Ustawienie wartości wykresu, 2)
                 OxyPlotModel_Cewka oxyPlotModel = new OxyPlotModel_Cewka(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Indukcyjnosc_L, Properties.Settings.Default.Frq_L);
                 this.DataContext = oxyPlotModel; // To pozwala połączyć kontrolki z polami klasy OxyPlotModel
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_L.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul_L.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS_L.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS_L.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS_L.Text = "Ic= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4)) + " [µA]";
+                Faza_L.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4)) + " [°]";
 
             }
         }
@@ -236,20 +232,20 @@ namespace projekt_jp_kkmr_v1._0
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Rezystancja_L, Properties.Settings.Default.Frq_L, Properties.Settings.Default.Indukcyjnosc_L, Properties.Settings.Default.Pojemnosc_L, Properties.Settings.Default.Uplywnosc);
 
                 // Wyświetlanie     
-                Frq_Sterowanie_LR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Frq_L));
+               
 
                 //Ustawienie wartości wykresu, 2)
                 OxyPlotModel_Cewka oxyPlotModel = new OxyPlotModel_Cewka(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Indukcyjnosc_L, Properties.Settings.Default.Frq_L);
                 this.DataContext = oxyPlotModel; // To pozwala połączyć kontrolki z polami klasy OxyPlotModel
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_L.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul_L.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS_L.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS_L.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS_L.Text = "Ic= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4)) + " [µA]";
+                Faza_L.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4)) + " [°]";
 
             }
 
@@ -266,18 +262,18 @@ namespace projekt_jp_kkmr_v1._0
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Rezystancja_L, Properties.Settings.Default.Frq_L, Properties.Settings.Default.Indukcyjnosc_L, Properties.Settings.Default.Pojemnosc_L, Properties.Settings.Default.Uplywnosc);
 
                 // Wyświetlanie     
-                Rezystancja_Sterowanie_LR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Rezystancja_L));
 
-               
+
+
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_L.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul_L.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS_L.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS_L.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS_L.Text = "Ic= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4)) + " [µA]";
+                Faza_L.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4)) + " [°]";
 
             }
 
@@ -294,18 +290,18 @@ namespace projekt_jp_kkmr_v1._0
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_L, Properties.Settings.Default.Rezystancja_L, Properties.Settings.Default.Frq_L, Properties.Settings.Default.Indukcyjnosc_L, Properties.Settings.Default.Pojemnosc_L, Properties.Settings.Default.Uplywnosc);
 
                 // Wyświetlanie     
-                Pojemnosc_Sterowanie_LR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Pojemnosc_L));
+
 
 
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_L.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_L.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 4)) + " + j" + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul_L.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 4)) + " [Ω]";
+                IRMS_L.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 4)) + " [A]";
+                IRL_RMS_L.Text = "IRL= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 4)) + " [A]";
+                IC_RMS_L.Text = "Ic= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 4)) + " [µA]";
+                Faza_L.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 4)) + " [°]";
 
             }
 
@@ -324,21 +320,18 @@ namespace projekt_jp_kkmr_v1._0
                 // Przepisanie danych do klasy Dane
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Rezystancja_C, Properties.Settings.Default.Frq_C, Properties.Settings.Default.Indukcyjnosc_C, Properties.Settings.Default.Pojemnosc_C, Properties.Settings.Default.Uplywnosc);
 
-                // Wyświetlanie     
-                Napiecie_Sterowanie_CR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Napiecie_C));
-
                 //Ustawienie wartości wykresu, 2)
                 OxyPlotModel_Kondensator oxyPlotModel = new OxyPlotModel_Kondensator(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Pojemnosc_C, Properties.Settings.Default.Frq_C);
                 this.DataContext = oxyPlotModel; // To pozwala połączyć kontrolki z polami klasy OxyPlotModel
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_C.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8)) + " + j " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul_C.Text = "|Z|= " +Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12)) + " [Ω]";
+                IRMS_C.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3)) + " [A]";
+                IRL_RMS_C.Text = "IC= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3)) + " [A]";
+                IC_RMS_C.Text = "IR= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3)) + " [µA]";
+                Faza_C.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3)) + " [°]";
 
             }
 
@@ -354,21 +347,18 @@ namespace projekt_jp_kkmr_v1._0
                 // Przepisanie danych do klasy Dane
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Rezystancja_C, Properties.Settings.Default.Frq_C, Properties.Settings.Default.Indukcyjnosc_C, Properties.Settings.Default.Pojemnosc_C, Properties.Settings.Default.Uplywnosc);
 
-                // Wyświetlanie     
-                Pojemnosc_Sterowanie_CR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Pojemnosc_C));
-
                 //Ustawienie wartości wykresu, 2)
                 OxyPlotModel_Kondensator oxyPlotModel = new OxyPlotModel_Kondensator(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Pojemnosc_C, Properties.Settings.Default.Frq_C);
                 this.DataContext = oxyPlotModel; // To pozwala połączyć kontrolki z polami klasy OxyPlotModel
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_C.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8)) + " + j " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul_C.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12)) + " [Ω]";
+                IRMS_C.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3)) + " [A]";
+                IRL_RMS_C.Text = "IC= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3)) + " [A]";
+                IC_RMS_C.Text = "IR= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3)) + " [µA]";
+                Faza_C.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3)) + " [°]";
 
             }
 
@@ -384,21 +374,18 @@ namespace projekt_jp_kkmr_v1._0
                 // Przepisanie danych do klasy Dane
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Rezystancja_C, Properties.Settings.Default.Frq_C, Properties.Settings.Default.Indukcyjnosc_C, Properties.Settings.Default.Pojemnosc_C, Properties.Settings.Default.Uplywnosc);
 
-                // Wyświetlanie     
-                Frq_Sterowanie_CR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Frq_C));
-
                 //Ustawienie wartości wykresu, 2)
                 OxyPlotModel_Kondensator oxyPlotModel = new OxyPlotModel_Kondensator(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Pojemnosc_C, Properties.Settings.Default.Frq_C);
                 this.DataContext = oxyPlotModel; // To pozwala połączyć kontrolki z polami klasy OxyPlotModel
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_C.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8)) + " + j " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul_C.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12)) + " [Ω]";
+                IRMS_C.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3)) + " [A]";
+                IRL_RMS_C.Text = "IC= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3)) + " [A]";
+                IC_RMS_C.Text = "IR= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3)) + " [µA]";
+                Faza_C.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3)) + " [°]";
 
             }
 
@@ -414,19 +401,16 @@ namespace projekt_jp_kkmr_v1._0
                 // Przepisanie danych do klasy Dane
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Rezystancja_C, Properties.Settings.Default.Frq_C, Properties.Settings.Default.Indukcyjnosc_C, Properties.Settings.Default.Pojemnosc_C, Properties.Settings.Default.Uplywnosc);
 
-                // Wyświetlanie     
-                Rezystancja_Sterowanie_CR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Rezystancja_C));
-
                 //Ustawienie wartości wykresu, 2)
-               
+
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_C.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8)) + " + j " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul_C.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12)) + " [Ω]";
+                IRMS_C.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3)) + " [A]";
+                IRL_RMS_C.Text = "IC= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3)) + " [A]";
+                IC_RMS_C.Text = "IR= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3)) + " [µA]";
+                Faza_C.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3)) + " [°]";
 
             }
         }
@@ -440,20 +424,15 @@ namespace projekt_jp_kkmr_v1._0
                 // Przepisanie danych do klasy Dane
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Rezystancja_C, Properties.Settings.Default.Frq_C, Properties.Settings.Default.Indukcyjnosc_C, Properties.Settings.Default.Pojemnosc_C, Properties.Settings.Default.Uplywnosc);
 
-                // Wyświetlanie     
-                Indukcyjnosc_Sterowanie_CR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Indukcyjnosc_C));
-
-                
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_C.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8)) + " + j " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
 
+                Z_Modul_C.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12)) + " [Ω]";
+                IRMS_C.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3)) + " [A]";
+                IRL_RMS_C.Text = "IC= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3)) + " [A]";
+                IC_RMS_C.Text = "IR= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3)) + " [µA]";
+                Faza_C.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3)) + " [°]";
             }
         }
 
@@ -468,19 +447,15 @@ namespace projekt_jp_kkmr_v1._0
                 // Przepisanie danych do klasy Dane
                 Dane_Rzeczywisty dane = new Dane_Rzeczywisty(Properties.Settings.Default.Napiecie_C, Properties.Settings.Default.Rezystancja_C, Properties.Settings.Default.Frq_C, Properties.Settings.Default.Indukcyjnosc_C, Properties.Settings.Default.Pojemnosc_C, Properties.Settings.Default.Uplywnosc);
 
-                // Wyświetlanie     
-                Uplywnosc_Sterowanie_CR.Text = Convert.ToString(Math.Round(Properties.Settings.Default.Uplywnosc));
-
-
 
                 //Wyświetlanie obliczonekj wartości OBLICZONYCH
-                Z_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8));
-                Z_IM_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8));
-                Z_Modul_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12));
-                IRMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3));
-                IRL_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3));
-                IC_RMS_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3));
-                Faza_C.Text = Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3));
+                Z_C.Text = "Z= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja, 8)) + " + j " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Impedancja_Urojona, 8)) + " [Ω]";
+
+                Z_Modul_C.Text = "|Z|= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Modul_Z, 12)) + " [Ω]";
+                IRMS_C.Text = "I= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irms, 3)) + " [A]";
+                IRL_RMS_C.Text = "IC= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Irl_rms, 3)) + " [A]";
+                IC_RMS_C.Text = "IR= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Ic_rms, 3)) + " [µA]";
+                Faza_C.Text = "ρ= " + Convert.ToString(Math.Round(Dane_Rzeczywisty.Faza, 3)) + " [°]";
 
             }
 

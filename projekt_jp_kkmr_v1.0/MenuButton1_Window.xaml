@@ -124,35 +124,35 @@
 
                     <!-- Blok 1 NAPIĘCIE-->
                     <TextBlock x:Name="Napiecie" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="71" Margin="48,115,31,0" Text="Napięcie:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
-                    <TextBox x:Name="Napiecie_Sterowanie" Grid.Column="1" Grid.Row="3" Height="30" Width="60" Margin="53,139,37,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBox x:Name="Napiecie_Sterowanie" Text="{Binding ElementName=Suwak_Napiecie, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Height="30" Width="60" Margin="53,139,37,31" Background="AliceBlue" Opacity="0.5"/>
                     <TextBlock Text="[V]" Grid.Column="1" Grid.Row="3" Margin="118,143,2,34" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
-                    <Slider x:Name="Suwak_Napiecie" Grid.Column="1" Grid.Row="3" Minimum="0" Maximum="230" ValueChanged="Suwak_ValueChanged_1" Height="22" Width="90" Margin="50,189,10,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Opacity="0.3" Grid.RowSpan="2"/>
+                    <Slider x:Name="Suwak_Napiecie" SmallChange="0.1" LargeChange="1" Grid.Column="1" Grid.Row="3" Minimum="0" Maximum="230" ValueChanged="Suwak_ValueChanged_1" Height="22" Width="90" Margin="50,189,10,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Opacity="0.3" Grid.RowSpan="2"/>
 
 
                     <!-- Blok 3 REZYSTANCJA-->
                     <TextBlock x:Name="Rezystancja"  Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" Width="93" Margin="23,115,184,0" Text="Rezystancja:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
-                    <TextBox x:Name="Rezystancja_Sterowanie" Grid.Column="2" Grid.Row="3" Height="30" Width="60" Margin="28,139,212,31" Background="AliceBlue" Opacity="0.5"/>
-                    <TextBlock Text='[&#937;]' Grid.Column="2" Grid.Row="3" Width="30" Margin="93,143,177,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold" RenderTransformOrigin="0.487,1.542" Height="23"/>
-                    <Slider x:Name="Rez_Suwak" Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="10000" ValueChanged="Suwak_ValueChanged_3" Height="22" Width="90" Margin="28,189,182,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightYellow" Opacity="0.7" Grid.RowSpan="2"/>
+                    <TextBox x:Name="Rezystancja_Sterowanie" Text="{Binding ElementName=Rez_Suwak, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="3" Height="30" Width="60" Margin="28,139,212,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text='[k&#937;]' Grid.Column="2" Grid.Row="3" Width="39" Margin="92,142,169,35" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" RenderTransformOrigin="0.487,1.542" Height="23"/>
+                    <Slider x:Name="Rez_Suwak" SmallChange="0.1" LargeChange="1" Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="100" ValueChanged="Suwak_ValueChanged_3" Height="22" Width="90" Margin="28,189,182,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightYellow" Opacity="0.7" Grid.RowSpan="2"/>
 
 
                     <!-- Blok 4 CZĘSTOTLIWOŚĆ-->
                     <TextBlock x:Name="Frq"   Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" Width="104" Margin="150,114,46,0" Text="Częstotliwość:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
-                    <TextBox x:Name="Frq_Sterowanie" Grid.Column="2" Grid.Row="3" Height="30" Margin="156,139,83,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBox x:Name="Frq_Sterowanie" Text="{Binding ElementName=Frq_Suwak, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="3" Height="30" Margin="156,139,83,31" Background="AliceBlue" Opacity="0.5"/>
                     <TextBlock Text="[Hz]" Grid.Column="2" Grid.Row="3" Width="37" Margin="223,143,40,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" RenderTransformOrigin="0.594,2.121" Height="23"/>
-                    <Slider x:Name="Frq_Suwak" Minimum="0" Maximum="60" ValueChanged="Suwak_ValueChanged_4" Grid.Column="2" Grid.Row="3" Background="AliceBlue" Height="20" Margin="161,189,47,131" Grid.RowSpan="2"/>
+                    <Slider x:Name="Frq_Suwak" SmallChange="0.1" LargeChange="1" Minimum="0" Maximum="60" ValueChanged="Suwak_ValueChanged_4" Grid.Column="2" Grid.Row="3" Background="AliceBlue" Height="20" Margin="161,189,47,131" Grid.RowSpan="2"/>
 
 
                     <!-- Blok 5 TEXT.PRAD-->
-                    <TextBlock x:Name="Prad_staly" Text="IR=" Grid.Column="3" Grid.Row="3" Height="20" Width="20" Margin="123,42,157,138"/>
-                    <TextBlock x:Name="Prad" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Height="30" Width="30" Margin="143,35,127,135" RenderTransformOrigin="0.894,0.224"/>
-                    <TextBlock x:Name="Prad_jedn" Text="[mA]" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Right"  Height="20" Width="29" Margin="0,40,93,140"/>
+                    
+                    <TextBlock x:Name="Prad" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Width="185" Height="35" Margin="115,38,0,127" RenderTransformOrigin="0.894,0.224"/>
+                    
 
 
-                    <!-- Blok 6 TEXT.REZYSTANCJA-->
-                    <TextBlock x:Name="Ur_staly" Text="UR=" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" Height="20" Width="25" Margin="123,70,152,110" />
-                    <TextBlock x:Name="Ur" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" Width="30" Margin="149,65,121,105" RenderTransformOrigin="0.894,0.224"/>
-                    <TextBlock x:Name="Ur_jedn" Text="[V]" Grid.Column="3" Grid.Row="3"  Height="20" Width="28" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0,70,93,110" />
+                    <!-- Blok 6 TEXT.Napiecie-->
+
+                    <TextBlock x:Name="Ur" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Width="185" Margin="115,74,0,91" RenderTransformOrigin="0.894,0.224"/>
+                    
 
                 </Grid>
             </TabItem>
@@ -222,22 +222,33 @@
 
                     <!-- Blok 1 NAPIĘCIE-->
                     <TextBlock x:Name="Napiecie_L"  Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="71" Margin="48,115,31,0" Text="Napięcie:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
-                    <TextBox x:Name="Napiecie_Sterowanie_L" Grid.Column="1" Grid.Row="3" Height="30" Width="60" Margin="53,139,37,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBox x:Name="Napiecie_Sterowanie_L" Text="{Binding ElementName=Suwak_Napiecie_L, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Height="30" Width="60" Margin="53,139,37,31" Background="AliceBlue" Opacity="0.5"/>
                     <TextBlock Text="[V]" Grid.Column="1" Grid.Row="3" Margin="118,144,2,33" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
-                    <Slider x:Name="Suwak_Napiecie_L" Minimum="0" Maximum="230" ValueChanged="Suwak_ValueChanged_LV" Grid.Column="1" Grid.Row="3" Height="22" Width="90" Margin="50,189,10,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Opacity="0.3" Grid.RowSpan="2"/>
+                    <Slider x:Name="Suwak_Napiecie_L" SmallChange="0.1" LargeChange="1" Minimum="0" Maximum="230" ValueChanged="Suwak_ValueChanged_LV" Grid.Column="1" Grid.Row="3" Height="22" Width="90" Margin="50,189,10,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Opacity="0.3" Grid.RowSpan="2"/>
 
 
                     <!-- Blok 3 INDUKCYJNOSC-->
                     <TextBlock x:Name="Indukcyjnosc"  Text="Indukcyjność:"  Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="107" Margin="23,115,170,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
-                    <TextBox x:Name="Indukcyjnosc_Sterowanie" Grid.Column="2" Grid.Row="3" Height="30" Width="60" Margin="28,139,212,31" Background="AliceBlue" Opacity="0.5"/>
-                    <TextBlock Text="[H]" Grid.Column="2" Grid.Row="3" Margin="93,144,177,33" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
-                    <Slider x:Name="Suwak_Indukcyjnosc" Minimum="0" Maximum="10000" ValueChanged="Suwak_ValueChanged_LP" Height="22" Width="90" Margin="33,189,177,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightYellow" Opacity="0.7" Grid.RowSpan="2" Grid.Column="2" Grid.Row="3"/>
+                    <TextBox x:Name="Indukcyjnosc_Sterowanie" Text="{Binding ElementName=Suwak_Indukcyjnosc, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="3" Height="30" Width="60" Margin="28,139,212,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text="[mH]" Grid.Column="2" Grid.Row="3" Margin="93,144,177,33" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
+                    <Slider x:Name="Suwak_Indukcyjnosc" SmallChange="0.1" LargeChange="1" Minimum="0" Maximum="1000" ValueChanged="Suwak_ValueChanged_LP" Height="22" Width="90" Margin="33,189,177,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightYellow" Opacity="0.7" Grid.RowSpan="2" Grid.Column="2" Grid.Row="3"/>
 
                     <!-- Blok 4 CZĘSTOTLIWOŚĆ-->
                     <TextBlock x:Name="Frq_L"  Text="Częstotliwość:" Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="104" Margin="151,115,45,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
-                    <TextBox x:Name="Frq_Sterowanie_L" Grid.Column="2" Grid.Row="3" Height="30" Margin="156,139,83,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBox x:Name="Frq_Sterowanie_L" Text="{Binding ElementName=Suwak_Frq_L, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="3" Height="30" Margin="156,139,83,31" Background="AliceBlue" Opacity="0.5"/>
                     <TextBlock Text="[Hz]" Grid.Column="2" Grid.Row="3" Margin="222,144,45,33" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
-                    <Slider x:Name="Suwak_Frq_L" Minimum="0" Maximum="60" ValueChanged="Suwak_ValueChanged_LF" Grid.Column="2" Grid.Row="3" Background="AliceBlue" Height="20" Margin="161,189,47,131" Grid.RowSpan="2"/>
+                    <Slider x:Name="Suwak_Frq_L" SmallChange="0.1" LargeChange="1" Minimum="0" Maximum="60" ValueChanged="Suwak_ValueChanged_LF" Grid.Column="2" Grid.Row="3" Background="AliceBlue" Height="20" Margin="161,189,47,131" Grid.RowSpan="2"/>
+
+                    <!-- Blok 5 TEXT.PRAD-->
+
+                    <TextBlock x:Name="Prad_L" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Width="185" Height="35" Margin="115,38,0,127" RenderTransformOrigin="0.894,0.224"/>
+
+
+
+                    <!-- Blok 6 TEXT.Napiecie-->
+
+                    <TextBlock x:Name="Ur_L" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Width="185" Margin="115,74,0,91" RenderTransformOrigin="0.894,0.224"/>
+
 
                 </Grid>
             </TabItem>
@@ -283,7 +294,7 @@
 
                     <!--Importowanie grafik-->
                     <Image Grid.Column="3" Grid.ColumnSpan="3" Source="/images/Lab1Kondensator.png" Margin="51,1,23,10" Grid.RowSpan="2" Grid.Row="1"/>
-                    <Image Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Source="/images/ResistorVector.png" Margin="13,35,-12,-56" Grid.RowSpan="3"/>
+                    <Image Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Source="/images/CapacitorVector.png" Margin="13,35,-12,-56" Grid.RowSpan="3"/>
 
 
                     <!--Opis sterowania-->
@@ -306,22 +317,32 @@
 
                     <!-- Blok 1 NAPIĘCIE-->
                     <TextBlock x:Name="Napiecie_C" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="71" Margin="48,115,31,0" Text="Napięcie:" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
-                    <TextBox x:Name="Napiecie_Sterowanie_C" Grid.Column="1" Grid.Row="3" Height="30" Width="60" Margin="53,139,37,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBox x:Name="Napiecie_Sterowanie_C" Text="{Binding ElementName=Suwak_Napiecie_C, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Height="30" Width="60" Margin="53,139,37,31" Background="AliceBlue" Opacity="0.5"/>
                     <TextBlock Text="[V]" Grid.Column="1" Grid.Row="3" Margin="118,144,2,33" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
-                    <Slider x:Name="Suwak_Napiecie_C" Minimum="0" Maximum="230" ValueChanged="Suwak_ValueChanged_KV" Grid.Column="1" Grid.Row="3" Height="22" Width="90" Margin="50,189,10,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Opacity="0.3" Grid.RowSpan="2"/>
+                    <Slider x:Name="Suwak_Napiecie_C" SmallChange="0.1" LargeChange="1" Minimum="0" Maximum="230" ValueChanged="Suwak_ValueChanged_KV" Grid.Column="1" Grid.Row="3" Height="22" Width="90" Margin="50,189,10,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Opacity="0.3" Grid.RowSpan="2"/>
 
 
                     <!-- Blok 2 POJEMNOSC-->
                     <TextBlock x:Name="Pojemnosc"  Text="Pojemność:"  Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" Width="93" Margin="23,115,184,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
-                    <TextBox x:Name="Pojemnosc_Sterowanie"  Grid.Column="2" Grid.Row="3" Height="30" Width="60" Margin="28,139,212,31" Background="AliceBlue" Opacity="0.5"/>
-                    <TextBlock Text="[C]" Grid.Column="2" Grid.Row="3" Margin="93,144,177,33" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
-                    <Slider x:Name="Suwak_Pojemnosc" Minimum="0" Maximum="10000" ValueChanged="Suwak_ValueChanged_KP" Height="22" Width="90" Margin="33,189,177,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightYellow" Opacity="0.7" Grid.RowSpan="2" Grid.Column="2" Grid.Row="3"/>
+                    <TextBox x:Name="Pojemnosc_Sterowanie" Text="{Binding ElementName=Suwak_Pojemnosc, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="3" Height="30" Width="60" Margin="28,139,212,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBlock Text='[uC]' Grid.Column="2" Grid.Row="3" Margin="93,144,177,33" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
+                    <Slider x:Name="Suwak_Pojemnosc" SmallChange="0.1" LargeChange="1" Minimum="0" Maximum="100" ValueChanged="Suwak_ValueChanged_KP" Height="22" Width="90" Margin="33,189,177,129" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightYellow" Opacity="0.7" Grid.RowSpan="2" Grid.Column="2" Grid.Row="3"/>
 
                     <!-- Blok 3 CZĘSTOTLIWOŚĆ-->
                     <TextBlock x:Name="Frq_C"   Text="Częstotliwość:" Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Height="24" Width="104" Margin="151,115,45,0" FontSize="16" FontWeight="SemiBold" FontStyle="Italic"/>
-                    <TextBox x:Name="Frq_Sterowanie_C" Grid.Column="2" Grid.Row="3" Height="30" Margin="156,139,83,31" Background="AliceBlue" Opacity="0.5"/>
+                    <TextBox x:Name="Frq_Sterowanie_C" Text="{Binding ElementName=Suwak_Frq_C, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="3" Height="30" Margin="156,139,83,31" Background="AliceBlue" Opacity="0.5"/>
                     <TextBlock Text="[Hz]" Grid.Column="2" Grid.Row="3" Margin="222,144,45,33" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="18" FontWeight="SemiBold"/>
-                    <Slider x:Name="Suwak_Frq_C" Minimum="0" Maximum="60" ValueChanged="Suwak_ValueChanged_KF" Grid.Column="2" Grid.Row="3" Background="AliceBlue" Height="20" Margin="161,189,47,131" Grid.RowSpan="2"/>
+                    <Slider x:Name="Suwak_Frq_C" SmallChange="0.1" LargeChange="1" Minimum="0" Maximum="60" ValueChanged="Suwak_ValueChanged_KF" Grid.Column="2" Grid.Row="3" Background="AliceBlue" Height="20" Margin="161,189,47,131" Grid.RowSpan="2"/>
+
+                    <!-- Blok 5 TEXT.PRAD-->
+
+                    <TextBlock x:Name="Prad_C" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" Width="185" Height="35" Margin="115,38,0,127" RenderTransformOrigin="0.894,0.224"/>
+
+
+
+                    <!-- Blok 6 TEXT.Napiecie-->
+
+                    <TextBlock x:Name="Ur_C" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Width="185" Margin="115,74,0,91" RenderTransformOrigin="0.894,0.224"/>
 
                 </Grid>
 

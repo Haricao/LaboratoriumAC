@@ -1,0 +1,177 @@
+﻿<Window x:Class="projekt_jp_kkmr_v1._0.MenuButton3_Window"
+        xmlns:oxy="http://oxyplot.codeplex.com"    
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:projekt_jp_kkmr_v1._0"
+        mc:Ignorable="d"
+        
+         Title="Pomiar RC" 
+        Height="700 px" 
+        Width="1000 px"
+        BorderBrush="AliceBlue"
+        FontStyle="Normal"
+        FontFamily="Helvetica Neue"
+        FontSize="13">
+
+    <!--LISTA TODO (1 napisac kom. potem control + k potem control + h) -->
+
+    <!--Ustawianie styli-->
+    <Window.Resources>
+
+        <!--Styl przycisku do wyboru ćwiczenia-->
+        <Style TargetType="Button" x:Key="MainListButton">
+            <Setter Property="Height" Value="36" />
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5,0,8" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        </Style>
+
+
+        <!--Styl przycisków do obsługi programu-->
+        <Style TargetType="Button" x:Key="ControllerButtons">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="170" />
+            <Setter Property="Margin" Value="0,5,0,5" />
+
+        </Style>
+
+        <!--Styl czcionki tytułu-->
+        <Style TargetType="TextBlock" x:Key="TitleFont">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="FontFamily" Value="Helvetica Neue" />
+            <Setter Property="Foreground" Value="White" />
+
+        </Style>
+
+    </Window.Resources>
+
+
+    <!--Glowna siatka i ustawienia zakladek-->
+    <Grid x:Name="Window1MainGrid">
+        <TabControl RenderTransformOrigin="0.52,0.398">
+
+
+            <TabItem Header="Charakterystyka członu całkującego RC">
+                <Grid>
+                    
+
+                    <oxy:Plot Title="Charakterystyka:" x:Name="Plot_Faza" Model="{Binding Calk_Model}" Margin="344,326,-2,-11">
+
+                        <oxy:Plot.Axes>
+                            <oxy:LogarithmicAxis Position="Bottom" Minimum="0" Maximum="1000" />
+                            <oxy:LinearAxis Position="Left" Minimum="-2" Maximum="2" />
+                        </oxy:Plot.Axes>
+
+
+                    </oxy:Plot>
+
+                    <TextBox x:Name="Rezystancja_Sterowanie" Text="{Binding ElementName=Rezystancja_Suwak, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="30,451,903,165" Background="AliceBlue" Opacity="0.5"/>
+                    <Slider x:Name="Rezystancja_Suwak" Minimum="0" Maximum="1000" SmallChange="0.1" LargeChange="1" ValueChanged="Rezystancja_Suwak_ValueChanged" Margin="-34,336,842,274" RenderTransformOrigin="0.5,0.5" TickPlacement="BottomRight" Foreground="Gray" TickFrequency="100">
+                        <Slider.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Slider.RenderTransform>
+                    </Slider>
+
+
+                    <TextBox x:Name="Pojemnosc_Sterowanie" Text="{Binding ElementName=Pojemnosc_Suwak, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="97,452,834,164" Background="AliceBlue" Opacity="0.5"/>
+                    <Slider x:Name="Pojemnosc_Suwak" Minimum="0" Maximum="1000" SmallChange="0.1" LargeChange="1" ValueChanged="Pojemnosc_Suwak_ValueChanged" Margin="36,333,772,273" RenderTransformOrigin="0.5,0.5" TickPlacement="BottomRight" Foreground="Gray" TickFrequency="100">
+                        <Slider.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Slider.RenderTransform>
+                    </Slider>
+
+
+
+                    <Button x:Name="Zmiana" Margin="160,114,676,465" Click="Zmiana_Click" Content="1"/>
+                    <Button x:Name="Zmiana2" Margin="216,214,642,365" Click="Zmiana2_Click" Content="2"/>
+
+
+                </Grid>
+            </TabItem>
+
+
+            <!--Zakładka 2 Indukcyjność-->
+            <TabItem Header="Odpowedź układu na Impuls Jednostkowy">
+                <Grid>
+                    <oxy:Plot x:Name="Plot_Imp_Jedn" Model="{Binding Model}" Margin="92,39,68,117">
+
+                        <oxy:Plot.Axes>
+                            <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="100000" />
+                            <oxy:LinearAxis Position="Left" Minimum="-100" Maximum="100" />
+                        </oxy:Plot.Axes>
+
+                        
+
+                    </oxy:Plot>
+
+
+
+
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Odpowiedź układu na skok napięcia">
+                <Grid>
+
+                    <oxy:Plot x:Name="Plot_Skok_Nap" Model="{Binding Model}" Margin="52,29,48,75">
+
+                        <oxy:Plot.Axes>
+                            <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="100000" />
+                            <oxy:LinearAxis Position="Left" Minimum="-100" Maximum="100" />
+                        </oxy:Plot.Axes>
+
+
+                    </oxy:Plot>
+
+
+
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="Odpowiedź układu na falę prostokątną">
+                <Grid>
+
+                    <oxy:Plot x:Name="Plot_Fala_Prost" Model="{Binding Model}" Margin="42,15,60,99">
+
+                        <oxy:Plot.Axes>
+                            <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="100000" />
+                            <oxy:LinearAxis Position="Left" Minimum="-100" Maximum="100" />
+                        </oxy:Plot.Axes>
+
+
+                    </oxy:Plot>
+
+
+
+
+                </Grid>
+
+            </TabItem>
+            
+        </TabControl>
+
+    </Grid>
+
+</Window>

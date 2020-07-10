@@ -96,6 +96,21 @@ namespace projekt_jp_kkmr_v1._0
 
         private void MenuButton3_Click(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.Napiecie = 0;
+            Properties.Settings.Default.Indukcyjnosc_L = 0;
+            Properties.Settings.Default.Rezystancja = 0;
+            Properties.Settings.Default.Frq = 0;
+            Properties.Settings.Default.Pojemnosc = 0;
+            Properties.Settings.Default.Indukcyjnosc_C = 0;
+            Properties.Settings.Default.Napiecie_C = 0;
+            Properties.Settings.Default.Napiecie_L = 0;
+            Properties.Settings.Default.Frq_C = 0;
+            Properties.Settings.Default.Pojemnosc_L = 0;
+            Properties.Settings.Default.Frq_L = 0;
+            Properties.Settings.Default.Indukcyjnosc = 0;
+            Properties.Settings.Default.Wybor = 0;
+            MenuButton3_Window button3_Window = new MenuButton3_Window();
+            button3_Window.Show();
 
         }
 
@@ -157,6 +172,7 @@ namespace projekt_jp_kkmr_v1._0
                 HelperButton3_ClickBoolean = false;
             }
 
+           
         }
 
         private void HelperButton2_Click(object sender, RoutedEventArgs e)
@@ -214,6 +230,7 @@ namespace projekt_jp_kkmr_v1._0
             }
 
         }
+
     }
 
 }

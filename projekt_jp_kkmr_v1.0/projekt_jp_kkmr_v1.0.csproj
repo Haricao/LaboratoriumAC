@@ -64,11 +64,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="class\OxyPlotModel_Uklad_Rozniczkujacy.cs" />
     <Compile Include="class\Dane_Rzeczywisty.cs" />
     <Compile Include="class\OxyPlotModel_Cewka.cs" />
     <Compile Include="class\OxyPlotModel_Kondensator.cs" />
     <Compile Include="class\Dane.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="MenuButton3_Window.xaml.cs">
+      <DependentUpon>MenuButton3_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WzorOkna.xaml.cs">
       <DependentUpon>WzorOkna.xaml</DependentUpon>
     </Compile>
@@ -92,6 +96,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuButton1_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MenuButton3_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +154,13 @@
     <Resource Include="images\Lab1Kondensator.png" />
     <Resource Include="images\Lab1Rezystor.png" />
     <Resource Include="images\ResistorVector.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Lab2Rezystor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Lab2Cewka.jpg" />
+    <Resource Include="images\Lab2Kondensator.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

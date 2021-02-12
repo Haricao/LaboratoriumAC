@@ -42,14 +42,14 @@ namespace projekt_jp_kkmr_v1._0
             plotModel.Axes.Add(new LinearAxis(AxisPosition.Bottom, 0, 100));
             plotModel.Axes.Add(new LinearAxis(AxisPosition.Left, -150, 150));
 
-            /*plotModel.LegendTitle = "Legenda";
+            plotModel.LegendTitle = "Legenda";
             plotModel.LegendOrientation = OxyPlot.LegendOrientation.Horizontal;
 
             //Orientacja pozioma
             plotModel.LegendPlacement = OxyPlot.LegendPlacement.Outside; //Poza planszą wykresu
             plotModel.LegendPosition = OxyPlot.LegendPosition.TopLeft; //Pozycja: góra, prawo
             plotModel.LegendBackground = OxyPlot.OxyColor.FromAColor(200, OxyPlot.OxyColors.White);//Tło białe
-            plotModel.LegendBorder = OxyPlot.OxyColors.Black; //Ramka okna czarna*/
+            plotModel.LegendBorder = OxyPlot.OxyColors.Black; //Ramka okna czarna
 
         }
 

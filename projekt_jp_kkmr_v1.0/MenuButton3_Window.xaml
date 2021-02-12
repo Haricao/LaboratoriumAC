@@ -62,47 +62,44 @@
 
             <TabItem Header="Charakterystyka członu całkującego RC">
                 <Grid>
-                    
-
-                    <oxy:Plot Title="Charakterystyka:" x:Name="Plot_Faza" Model="{Binding Calk_Model}" Margin="344,326,-2,-11">
+                    <oxy:Plot Title="Charakterystyka:" x:Name="Plot_Faza" Model="{Binding Calk_Model}" Margin="-31,183,-2,-11">
 
                         <oxy:Plot.Axes>
-                            <oxy:LogarithmicAxis Position="Bottom" Minimum="0" Maximum="1000" />
+                            <oxy:LogarithmicAxis Position="Bottom" Minimum="0.0001" Maximum="1000" />
                             <oxy:LinearAxis Position="Left" Minimum="-2" Maximum="2" />
                         </oxy:Plot.Axes>
 
 
                     </oxy:Plot>
 
-                    <TextBox x:Name="Rezystancja_Sterowanie" Text="{Binding ElementName=Rezystancja_Suwak, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="30,451,903,165" Background="AliceBlue" Opacity="0.5"/>
-                    <Slider x:Name="Rezystancja_Suwak" Minimum="0" Maximum="1000" SmallChange="0.1" LargeChange="1" ValueChanged="Rezystancja_Suwak_ValueChanged" Margin="-34,336,842,274" RenderTransformOrigin="0.5,0.5" TickPlacement="BottomRight" Foreground="Gray" TickFrequency="100">
+                    <TextBox x:Name="Rezystancja_Sterowanie" Text="{Binding ElementName=Rezystancja_Suwak, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="278,58,655,559" Background="AliceBlue" Opacity="0.5"/>
+                    <Slider x:Name="Rezystancja_Suwak" Minimum="0.01" Maximum="20" SmallChange="0.1" LargeChange="1" ValueChanged="Rezystancja_Suwak_ValueChanged" Margin="10,60,720,539" RenderTransformOrigin="0.5,0.5" TickPlacement="BottomRight" Foreground="Gray" TickFrequency="100">
                         <Slider.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
                                 <SkewTransform/>
-                                <RotateTransform Angle="-90"/>
+                                <RotateTransform Angle="0"/>
                                 <TranslateTransform/>
                             </TransformGroup>
                         </Slider.RenderTransform>
                     </Slider>
 
 
-                    <TextBox x:Name="Pojemnosc_Sterowanie" Text="{Binding ElementName=Pojemnosc_Suwak, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="97,452,834,164" Background="AliceBlue" Opacity="0.5"/>
-                    <Slider x:Name="Pojemnosc_Suwak" Minimum="0" Maximum="1000" SmallChange="0.1" LargeChange="1" ValueChanged="Pojemnosc_Suwak_ValueChanged" Margin="36,333,772,273" RenderTransformOrigin="0.5,0.5" TickPlacement="BottomRight" Foreground="Gray" TickFrequency="100">
+                    <TextBox x:Name="Pojemnosc_Sterowanie" Text="{Binding ElementName=Pojemnosc_Suwak, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="278,103,654,513" Background="AliceBlue" Opacity="0.5"/>
+                    <Slider x:Name="Pojemnosc_Suwak" Minimum="0.01" Maximum="20" SmallChange="0.1" LargeChange="1" ValueChanged="Pojemnosc_Suwak_ValueChanged" Margin="10,108,720,491" RenderTransformOrigin="0.5,0.5" TickPlacement="BottomRight" Foreground="Gray" TickFrequency="100">
                         <Slider.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
                                 <SkewTransform/>
-                                <RotateTransform Angle="-90"/>
+                                <RotateTransform Angle="0"/>
                                 <TranslateTransform/>
                             </TransformGroup>
                         </Slider.RenderTransform>
                     </Slider>
 
-
-
-                    <Button x:Name="Zmiana" Margin="160,114,676,465" Click="Zmiana_Click" Content="1"/>
-                    <Button x:Name="Zmiana2" Margin="216,214,642,365" Click="Zmiana2_Click" Content="2"/>
+                    <local:ToggleButton x:Name="Button" HorizontalAlignment="Left" Height="82" VerticalAlignment="Top" Width="178" MouseLeftButtonDown="Bu_MouseLeftButtonDown" Margin="74,135,0,0"/>
+                    
+                    
 
 
                 </Grid>
@@ -119,7 +116,7 @@
                             <oxy:LinearAxis Position="Left" Minimum="-100" Maximum="100" />
                         </oxy:Plot.Axes>
 
-                        
+
 
                     </oxy:Plot>
 
@@ -169,7 +166,7 @@
                 </Grid>
 
             </TabItem>
-            
+
         </TabControl>
 
     </Grid>

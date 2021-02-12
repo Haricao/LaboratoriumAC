@@ -64,7 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="class\OxyPlotModel_Uklad_Rozniczkujacy.cs" />
+    <Compile Include="class\OxyPlotModel_Uklad_Calkujacy.cs" />
     <Compile Include="class\Dane_Rzeczywisty.cs" />
     <Compile Include="class\OxyPlotModel_Cewka.cs" />
     <Compile Include="class\OxyPlotModel_Kondensator.cs" />
@@ -72,6 +72,9 @@
     <Compile Include="Settings.cs" />
     <Compile Include="MenuButton3_Window.xaml.cs">
       <DependentUpon>MenuButton3_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToggleButton.xaml.cs">
+      <DependentUpon>ToggleButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="WzorOkna.xaml.cs">
       <DependentUpon>WzorOkna.xaml</DependentUpon>
@@ -100,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MenuButton3_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

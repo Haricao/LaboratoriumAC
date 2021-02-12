@@ -40,37 +40,47 @@ namespace projekt_jp_kkmr_v1._0
         {
            
             Properties.Settings.Default.Rezystancja = Rezystancja_Suwak.Value;
-            OxyPlotModel_Uklad_Rozniczkujacy oxyPlotModel = new OxyPlotModel_Uklad_Rozniczkujacy(Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Pojemnosc);
-            this.DataContext = oxyPlotModel; 
+            OxyPlotModel_Uklad_Calkujacy oxyPlotModel = new OxyPlotModel_Uklad_Calkujacy(Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Pojemnosc);
+            this.DataContext = oxyPlotModel;
+            double chuj = Properties.Settings.Default.Rezystancja * Properties.Settings.Default.Pojemnosc;
+           
 
-            
 
 
         }
-
+       
         private void Pojemnosc_Suwak_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             
             Properties.Settings.Default.Pojemnosc = Pojemnosc_Suwak.Value;
-            OxyPlotModel_Uklad_Rozniczkujacy oxyPlotModel = new OxyPlotModel_Uklad_Rozniczkujacy(Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Pojemnosc);
-            this.DataContext = oxyPlotModel; 
-
+            OxyPlotModel_Uklad_Calkujacy oxyPlotModel = new OxyPlotModel_Uklad_Calkujacy(Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Pojemnosc);
+            this.DataContext = oxyPlotModel;
+            double chuj = Properties.Settings.Default.Rezystancja * Properties.Settings.Default.Pojemnosc;
             
 
-        }
 
-        private void Zmiana_Click(object sender, RoutedEventArgs e)
+        }    
+        private void Bu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Properties.Settings.Default.Wybor = 1;
-            OxyPlotModel_Uklad_Rozniczkujacy oxyPlotModel = new OxyPlotModel_Uklad_Rozniczkujacy(Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Pojemnosc);
-            this.DataContext = oxyPlotModel;
-        }
+            if (Button.Toggled1 == true)
+            {
+                Properties.Settings.Default.Wybor = 1;
+                OxyPlotModel_Uklad_Calkujacy oxyPlotModel = new OxyPlotModel_Uklad_Calkujacy(Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Pojemnosc);
+                this.DataContext = oxyPlotModel;
 
-        private void Zmiana2_Click(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.Wybor = 2;
-            OxyPlotModel_Uklad_Rozniczkujacy oxyPlotModel = new OxyPlotModel_Uklad_Rozniczkujacy(Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Pojemnosc);
-            this.DataContext = oxyPlotModel;
+
+
+            }
+            else
+            {
+                Properties.Settings.Default.Wybor = 2;
+                OxyPlotModel_Uklad_Calkujacy oxyPlotModel = new OxyPlotModel_Uklad_Calkujacy(Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Pojemnosc);
+                this.DataContext = oxyPlotModel;
+
+
+            }
+
+
         }
     }
 }

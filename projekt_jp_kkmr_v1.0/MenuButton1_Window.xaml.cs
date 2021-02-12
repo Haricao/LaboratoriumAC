@@ -70,9 +70,12 @@ namespace projekt_jp_kkmr_v1._0
             Properties.Settings.Default.Wybor = 0;
             if (Properties.Settings.Default.Wybor == 0)
             {
-                Dane dane = new Dane(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
 
                 Properties.Settings.Default.Rezystancja = Rez_Suwak.Value;
+
+                Dane dane = new Dane(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
+
+                
                 
 
                 OxyPlotModel oxyPlotModel = new OxyPlotModel(Properties.Settings.Default.Napiecie, Properties.Settings.Default.Rezystancja, Properties.Settings.Default.Frq);
